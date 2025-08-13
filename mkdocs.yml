@@ -29,6 +29,10 @@ extra_javascript:
 nav:
   - 首页: index.md
   - 实验:
-      - "实验 001：正弦曲线与直方图": experiments/exp-001.ipynb
-  - Python 示例: python-demo.ipynb
+      - 实验 001:正弦曲线与直方图: experiments/exp-001.ipynb
+      # - 实验 002：xxx: experiments/exp-002.ipynb
+  - 博文:
+      - 2025-08-14:我的第一篇文章: posts/2025-08-14-first-post.md
+  - Python 示例: python-demo.ipynb   # 若有
+
 
