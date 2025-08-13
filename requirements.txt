@@ -1,0 +1,9 @@
+mkdocs
+mkdocs-material
+mkdocs-jupyter
+pymdown-extensions
+numpy
+matplotlib
+ipykernel
+nbconvert>=7
+jieba
