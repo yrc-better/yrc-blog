@@ -1,0 +1,10 @@
+# Python / MkDocs
+.venv/
+site/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS 杂项
+.DS_Store
+Thumbs.db
