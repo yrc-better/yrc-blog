@@ -5,6 +5,11 @@ repo_url: https://github.com/yrc-better/yrc-blog
 theme:
   name: material
   language: zh
+  features:
+    - content.code.copy
+    - content.tabs.link
+  #  - navigation.instant
+  custom_dir: overrides
 
 plugins:
   - search:
@@ -14,25 +19,31 @@ plugins:
       include_source: true
 
 markdown_extensions:
+  - md_in_html
   - admonition
+  - attr_list
   - toc:
       permalink: true
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
 
-extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+
+
 
 nav:
   - 首页: index.md
   - 实验:
       - 实验 001:正弦曲线与直方图: experiments/exp-001.ipynb
-      # - 实验 002：xxx: experiments/exp-002.ipynb
+      - 实验 002:xxx: experiments/exp-002.ipynb
+      - "PyScript Demo": labs/pyscript-demo.md
   - 博文:
       - 2025-08-14:我的第一篇文章: posts/2025-08-14-first-post.md
+      - "Python 示例": posts/python-sample.md
   - Python 示例: python-demo.ipynb   # 若有
 
 
