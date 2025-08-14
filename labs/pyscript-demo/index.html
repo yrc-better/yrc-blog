@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://blog.yrc-bot.xyz/posts/2025-08-14-first-post/">
+        <link rel="canonical" href="https://blog.yrc-bot.xyz/labs/pyscript-demo/">
       
       
-        <link rel="prev" href="../../labs/pyscript-demo/">
+        <link rel="prev" href="../../experiments/exp-002/">
       
       
-        <link rel="next" href="../python-sample/">
+        <link rel="next" href="../../posts/2025-08-14-first-post/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>2025-08-14:我的第一篇文章 - 岩溶尘的空间</title>
+        <title>PyScript Demo - 岩溶尘的空间</title>
       
     
     
@@ -67,11 +67,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          跳转至
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -104,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2025-08-14:我的第一篇文章
+              PyScript Demo
             
           </span>
         </div>
@@ -243,18 +238,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -270,7 +267,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             实验
@@ -327,10 +324,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../labs/pyscript-demo/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -341,6 +345,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -357,20 +362,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -386,7 +389,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             博文
@@ -397,19 +400,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../posts/2025-08-14-first-post/" class="md-nav__link">
         
   
   
@@ -420,7 +414,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -433,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python-sample/" class="md-nav__link">
+      <a href="../../posts/python-sample/" class="md-nav__link">
         
   
   
@@ -495,8 +488,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -515,14 +506,58 @@
   
 
 
-<h1 id="_1">我的第一篇文章<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>这里是正文。<br />
-插图放到 <code>docs/assets/xxx.png</code>，引用：<code>![图注](../assets/xxx.png)</code>。</p>
-<ul>
-<li>支持 <strong>粗体</strong> / <em>斜体</em> / <code>代码</code></li>
-<li>也支持公式（你已接了 MathJax）：<br />
-  \( \int_0^1 x^2 dx = \frac{1}{3} \)</li>
-</ul>
+  <h1>PyScript Demo</h1>
+
+<!-- 可执行代码块：外观像普通代码块 -->
+<div class="py-cell" style="margin:16px 0 28px;">
+  <textarea id="py-code" class="py-code" style="
+    width:100%;min-height:140px;resize:vertical;padding:12px 14px;
+    font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
+    line-height:1.55;white-space:pre;background:#f6f8fa;border:1px solid #e5e8eb;border-radius:6px;">
+# 这里可以编辑，然后点击运行
+print("Hello, 这是一个可编辑、可运行的代码块！")
+for i in range(3):
+    print("第", i+1, "行")
+  </textarea>
+
+  <div class="py-toolbar" style="margin:8px 0 10px;display:flex;gap:8px;">
+    <button id="py-run"   style="padding:6px 10px;border:0;border-radius:6px;background:#2962ff;color:#fff;cursor:pointer;">运行</button>
+    <button id="py-clear" style="padding:6px 10px;border:0;border-radius:6px;background:#eaeef2;color:#333;cursor:pointer;">清空输出</button>
+  </div>
+
+  <pre id="py-out" class="py-out" style="
+    background:#0f172a;color:#e2e8f0;padding:10px 12px;border-radius:6px;min-height:1.6em;white-space:pre-wrap;"></pre>
+</div>
+
+<!-- 全部用 Python 绑定事件（避免 JS 等待 pyodide 的时序问题） -->
+<script type="py">
+import sys, io, traceback
+from js import document
+from pyodide.ffi import create_proxy
+
+def run_code(event=None):
+    code_area = document.getElementById("py-code")
+    out_el    = document.getElementById("py-out")
+
+    buf = io.StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    sys.stdout = sys.stderr = buf
+    ns = {}                         # 如需跨次运行保留变量，可改为 ns = globals()
+    try:
+        exec(code_area.value, ns, ns)
+    except Exception:
+        traceback.print_exc()
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
+
+    out_el.textContent = buf.getvalue()
+
+def clear_out(event=None):
+    document.getElementById("py-out").textContent = ""
+
+document.getElementById("py-run").addEventListener("click", create_proxy(run_code))
+document.getElementById("py-clear").addEventListener("click", create_proxy(clear_out))
+</script>
 
 
 
