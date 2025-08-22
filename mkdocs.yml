@@ -14,9 +14,13 @@ theme:
 plugins:
   - search:
       lang: zh
+  - markdown-exec
   - mkdocs-jupyter:
       execute: true
       include_source: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
   - md_in_html
@@ -42,8 +46,11 @@ nav:
       - 实验 002:xxx: experiments/exp-002.ipynb
       - "PyScript Demo": labs/pyscript-demo.md
   - 博文:
-      - 2025-08-14:我的第一篇文章: posts/2025-08-14-first-post.md
-      - "Python 示例": posts/python-sample.md
+      - 复旦江湾研0租房经验: posts/复旦江湾研0租房经验.md
+      - 人工智能导论学习笔记1: posts/李宏毅人工智能导论学习笔记(一).md
+      - 人工智能导论学习笔记2: posts/李宏毅人工智能导论学习笔记(二).md
+      - 人工智能导论学习笔记3: posts/李宏毅人工智能导论学习笔记(三).md
+      - 人工智能导论学习笔记4: posts/李宏毅人工智能导论学习笔记(四).md
   - Python 示例: python-demo.ipynb   # 若有
 
 

@@ -1,9 +1,13 @@
-# 欢迎来到「岩溶尘的空间」
+# 欢迎来到「岩溶尘的个人博客」
 
-这里记录我的学习笔记与生活日常。
+这里记录我的生活日常、感想随笔以及学习笔记。
 
-~~~python
-# 这是普通代码片段示例（仅展示，不执行）
-print("Hello, MkDocs!")
-~~~
 
+
+```python
+print("Hello, Welcome to My Blog!")
+``` 
+
+```python exec="on"
+print("Hello, Welcome to My Blog!")
+```
