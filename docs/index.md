@@ -8,6 +8,3 @@
 print("Hello, Welcome to My Blog!")
 ``` 
 
-```python exec="on"
-print("Hello, Welcome to My Blog!")
-```

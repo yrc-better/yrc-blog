@@ -14,7 +14,7 @@ theme:
 plugins:
   - search:
       lang: zh
-  - markdown-exec
+# - markdown-exec
   - mkdocs-jupyter:
       execute: true
       include_source: true
