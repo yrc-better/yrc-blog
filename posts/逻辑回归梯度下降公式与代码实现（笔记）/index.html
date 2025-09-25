@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://blog.yrc-bot.xyz/posts/%E4%B8%80%E7%BB%B4%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95/">
+        <link rel="canonical" href="https://blog.yrc-bot.xyz/posts/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%85%AC%E5%BC%8F%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/">
       
       
-        <link rel="prev" href="../%E6%9D%8E%E5%AE%8F%E6%AF%85%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%28%E5%85%AD%29/">
+        <link rel="prev" href="../%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E5%85%AC%E5%BC%8F%E4%B8%8E%E7%9F%A2%E9%87%8F%E5%8C%96%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/">
       
       
-        <link rel="next" href="../%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E5%85%AC%E5%BC%8F%E4%B8%8E%E7%9F%A2%E9%87%8F%E5%8C%96%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/">
+        <link rel="next" href="../../python-demo/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>一维线性回归模型与梯度下降算法 - 岩溶尘的空间</title>
+        <title>逻辑回归梯度下降公式与代码实现 - 岩溶尘的空间</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              一维线性回归模型与梯度下降算法
+              逻辑回归梯度下降公式与代码实现
             
           </span>
         </div>
@@ -560,32 +560,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    一维线性回归模型与梯度下降算法
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E7%BB%B4%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95/" class="md-nav__link">
         
   
   
@@ -596,188 +574,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      课程大纲
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      监督学习与无监督学习
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      线性回归模型
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="线性回归模型">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1) 任务与符号
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2) 假设函数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3) 成本函数（均方误差）
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      梯度下降算法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="梯度下降算法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1) 公式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      2) 正确的做法
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      3) 学习率α
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      线性回归的梯度下降
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="线性回归的梯度下降">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      1) 目标函数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2) 梯度计算
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      3) 更新规则
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4) 线性回归的梯度下降算法
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      梯度下降算法的运行
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -810,10 +606,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%85%AC%E5%BC%8F%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    逻辑回归梯度下降公式与代码实现
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -824,6 +642,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.逻辑回归的成本函数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.梯度计算
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.梯度下降的计算
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -885,162 +750,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      课程大纲
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      监督学习与无监督学习
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      线性回归模型
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="线性回归模型">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
-      1) 任务与符号
+      1.逻辑回归的成本函数
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      2) 假设函数
+      2.梯度计算
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      3) 成本函数（均方误差）
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      梯度下降算法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="梯度下降算法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1) 公式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      2) 正确的做法
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      3) 学习率α
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      线性回归的梯度下降
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="线性回归的梯度下降">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      1) 目标函数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2) 梯度计算
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      3) 更新规则
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4) 线性回归的梯度下降算法
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      梯度下降算法的运行
+      3.梯度下降的计算
     </span>
   </a>
   
@@ -1065,152 +795,102 @@
   
 
 
-<h1 id="_1">一维线性回归模型与梯度下降算法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">课程大纲<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p><strong>本课程分为三个部分：</strong></p>
+<h1 id="_1">逻辑回归梯度下降公式与代码实现（笔记）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1.逻辑回归的成本函数<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<div class="arithmatex">\[
+\begin{align}
+  f_{\mathbf{w},b}(\mathbf{x^{(i)}}) &amp;= g(z^{(i)})\tag{1} \\
+  z^{(i)} &amp;= \mathbf{w} \cdot \mathbf{x}^{(i)}+ b\tag{2} \\
+  g(z^{(i)}) &amp;= \frac{1}{1+e^{-z^{(i)}}}\tag{3} 
+\end{align}
+\]</div>
+<div class="arithmatex">\[
+J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) \right] \tag{4}
+\]</div>
 <ul>
-<li>有监督的机器学习：回归与分类</li>
-<li>高级学习算法</li>
-<li>无监督的学习、推荐器、强化学习</li>
+<li>（1）～（3）式为逻辑回归的基本表达式；（4）式为逻辑回归的成本函数公式。</li>
 </ul>
-<p><img src="/assets/post9/1.png" alt="1" width="600"></p>
+<div class="arithmatex">\[
+loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) = -y^{(i)}\log\!\big(f_{\mathbf{w},b}\!\left( \mathbf{x}^{(i)} \right)\big) - \big(1-y^{(i)}\big)\log\!\Big(1-f_{\mathbf{w},b}\!\left( \mathbf{x}^{(i)} \right)\Big) \tag{5}
+\]</div>
+<ul>
+<li>（5）式为单个样本的损失，而逻辑回归的成本函数就是将所有样本的损失相加再除以样本数。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">#定义一个函数用于计算逻辑回归的成本</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_cost_logistic</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">z_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="n">f_wb_i</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z_i</span><span class="p">)</span>
+        <span class="n">cost</span> <span class="o">+=</span>  <span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">f_wb_i</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">f_wb_i</span><span class="p">)</span><span class="c1">#将样本损失逐个相加</span>
+
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">/</span> <span class="n">m</span>  <span class="c1">#得到逻辑回归模型的成本</span>
+    <span class="k">return</span> <span class="n">cost</span>
+</code></pre></div>
 <hr />
-<h2 id="_3">监督学习与无监督学习<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="2">2.梯度计算<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="arithmatex">\[
+\begin{align}
+\frac{\partial J(\mathbf w,b)}{\partial w_j}
+&amp;= \frac{1}{m}\sum_{i=0}^{m-1}\big(f_{\mathbf w,b}(\mathbf x^{(i)})-y^{(i)}\big)\,x_j^{(i)} \tag{6}\\
+\frac{\partial J(\mathbf w,b)}{\partial b}
+&amp;= \frac{1}{m}\sum_{i=0}^{m-1}\big(f_{\mathbf w,b}(\mathbf x^{(i)})-y^{(i)}\big) \tag{7}
+\end{align}
+\]</div>
 <ul>
-<li><strong>监督学习</strong>：有标签 <span class="arithmatex">\(y\)</span>，学 <span class="arithmatex">\(x \to y\)</span> 的映射（回归/分类）。</li>
-<li><strong>无监督学习</strong>：无标签，发掘数据结构（聚类、降维、异常检测）。</li>
+<li>（6）、（7）式为成本J分别对单个wj与b的导数，形式上与线性回归的梯度很像但逻辑回归的f为（1）～（3）式。</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="c1">#定义一个函数计算逻辑回归的成本对于参数的梯度</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_gradient_logistic</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span> 
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,))</span>                           
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">f_wb_i</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>         <span class="c1">#计算每一个样本的预测值 </span>
+        <span class="n">err_i</span>  <span class="o">=</span> <span class="n">f_wb_i</span>  <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>                      <span class="c1">#计算每一个样本的预测值与实际值之差 </span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dj_dw</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">err_i</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>      
+        <span class="n">dj_db</span> <span class="o">=</span> <span class="n">dj_db</span> <span class="o">+</span> <span class="n">err_i</span>
+    <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">dj_dw</span><span class="o">/</span><span class="n">m</span>                <span class="c1">#计算每一特征的梯度                   </span>
+    <span class="n">dj_db</span> <span class="o">=</span> <span class="n">dj_db</span><span class="o">/</span><span class="n">m</span>                                   
+
+    <span class="k">return</span> <span class="n">dj_db</span><span class="p">,</span> <span class="n">dj_dw</span>  
+</code></pre></div>
 <hr />
-<h2 id="_4">线性回归模型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h3 id="1">1) 任务与符号<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<ul>
-<li>训练集：<span class="arithmatex">\(\{(x^{(i)},y^{(i)})\}_{i=1}^m\)</span></li>
-<li>单变量：<span class="arithmatex">\(x\in\mathbb{R}\)</span>；多变量：<span class="arithmatex">\(x\in\mathbb{R}^n\)</span></li>
-</ul>
-<h3 id="2">2) 假设函数<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
-<ul>
-<li>单变量：
-$$
-f_{w,b}!\left(x^{(i)}\right)=w\,x^{(i)}+b
-$$</li>
-</ul>
-<!-- 同样内容用 y=wx+b 的写法（把 f_{w,b} 展开） -->
+<h2 id="3">3.梯度下降的计算<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <div class="arithmatex">\[
-\hat{y}^{(i)} = w\,x^{(i)} + b
-\]</div>
-<h3 id="3">3) 成本函数（均方误差）<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[
-J(w,b)=\frac{1}{2m}\sum_{i=0}^{m-1}\big(f_{w,b}(x^{(i)})-y^{(i)}\big)^2
-\]</div>
-<div class="arithmatex">\[
-J(w,b)=\frac{1}{2m}\sum_{i=0}^{m-1}\Big(\hat{y}^{(i)}-y^{(i)}\Big)^2
-=\frac{1}{2m}\sum_{i=0}^{m-1}\Big(w\,x^{(i)}+b-y^{(i)}\Big)^2
-\]</div>
-<blockquote>
-<p>线性回归模型的思想是将训练集代入函数中，找出最小的 <span class="arithmatex">\(J(w,b)\)</span> 所对应的 <span class="arithmatex">\(w,b\)</span> 。
-但是如何找出最小的 <span class="arithmatex">\(J(w,b)\)</span> 呢？</p>
-</blockquote>
-<hr />
-<h2 id="_5">梯度下降算法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>有一种更系统的方法来找出w与b——梯度下降算法。梯度下降在机器学习中无处不在，不仅用于线性回归，还用于训练，例如一些深度学习模型。</p>
-<p><strong>梯度下降算法的思想</strong>：从一个初始点出发，沿着函数值下降最快的方向前进，直到到达局部最小值。用大白话来解释就是朝着最陡的方向下山。</p>
-</blockquote>
-<h3 id="1_1">1) 公式<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[
-w = w - \alpha \,\frac{\partial}{\partial w} J(w,b)
-\]</div>
-<div class="arithmatex">\[
-b = b - \alpha \,\frac{\partial}{\partial b} J(w,b)
-\]</div>
-<blockquote>
-<p>等号表示赋值,α表示学习率。</p>
-</blockquote>
-<h3 id="2_1">2) 正确的做法<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[
-\begin{aligned}
-\text{tmp_w} &amp;= w - \alpha\,\frac{\partial}{\partial w} J(w,b) \\
-\text{tmp_b} &amp;= b - \alpha\,\frac{\partial}{\partial b} J(w,b) \\
-w &amp;= \text{tmp_w} \\
-b &amp;= \text{tmp_b}
-\end{aligned}
-\]</div>
-<blockquote>
-<p>意为同时更新w与b，在原始位置的基础上做梯度下降。</p>
-</blockquote>
-<h3 id="3_1">3) 学习率α<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>α不能太小，也不能太大。</strong> 太小会导致收敛过慢，太大可能会导致错过最优解，甚至发散。</li>
-<li><strong>若J已达局部最小值，梯度下降会保持w不变。</strong> 因为此时梯度为0，更新公式变为 <span class="arithmatex">\(w = w - \alpha \cdot 0\)</span>，即 <span class="arithmatex">\(w\)</span> 保持不变。</li>
-<li><strong>当J接近局部最小值时，导数会变得很小，下降的梯度也会变得很小，导致每次更新的步伐也变小，从而使得 <span class="arithmatex">\(w\)</span> 的变化变得非常缓慢。</strong> 这是即使α是固定值成本函数J最终也能达到局部最小值的原因。</li>
-</ul>
-<p><img src="/assets/post9/2.png" alt="2" width="600"></p>
-<hr />
-<h2 id="_6">线性回归的梯度下降<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<h3 id="1_2">1) 目标函数<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[
-J(w,b)=\frac{1}{2m}\sum_{i=0}^{m-1}\Big(w\,x^{(i)}+b-y^{(i)}\Big)^2
-\]</div>
-<h3 id="2_2">2) 梯度计算<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[
-\frac{\partial}{\partial w} J(w,b) = \frac{1}{m}\sum_{i=0}^{m-1}\Big(w\,x^{(i)}+b-y^{(i)}\Big)x^{(i)}
-\]</div>
-<div class="arithmatex">\[
-\frac{\partial}{\partial b} J(w,b) = \frac{1}{m}\sum_{i=0}^{m-1}\Big(w\,x^{(i)}+b-y^{(i)}\Big)
-\]</div>
-<blockquote>
-<p>上方两式是用微积分推导出的，推导过程如下：</p>
-</blockquote>
-<div class="arithmatex">\[
-\begin{aligned}
-\frac{\partial}{\partial w}J(w,b)
-&amp;= \frac{d}{dw}\,\frac{1}{2m}\sum_{i=1}^{m}\!\left(f_{w,b}\!\left(x^{(i)}\right)-y^{(i)}\right)^{2}
-= \frac{d}{dw}\,\frac{1}{2m}\sum_{i=1}^{m}\!\left(w\,x^{(i)}+b-y^{(i)}\right)^{2} \\[4pt]
-&amp;= \frac{1}{m}\sum_{i=1}^{m}\!\left(w\,x^{(i)}+b-y^{(i)}\right)x^{(i)}
-= \frac{1}{m}\sum_{i=1}^{m}\!\left(f_{w,b}\!\left(x^{(i)}\right)-y^{(i)}\right)x^{(i)} \\[8pt]
-\frac{\partial}{\partial b}J(w,b)
-&amp;= \frac{d}{db}\,\frac{1}{2m}\sum_{i=1}^{m}\!\left(f_{w,b}\!\left(x^{(i)}\right)-y^{(i)}\right)^{2}
-= \frac{d}{db}\,\frac{1}{2m}\sum_{i=1}^{m}\!\left(w\,x^{(i)}+b-y^{(i)}\right)^{2} \\[4pt]
-&amp;= \frac{1}{m}\sum_{i=1}^{m}\!\left(w\,x^{(i)}+b-y^{(i)}\right)
-= \frac{1}{m}\sum_{i=1}^{m}\!\left(f_{w,b}\!\left(x^{(i)}\right)-y^{(i)}\right)
-\end{aligned}
-\]</div>
-<h3 id="3_2">3) 更新规则<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[
-\begin{aligned}
-w &amp;= w - \alpha\,\frac{\partial}{\partial w} J(w,b) \\
-b &amp;= b - \alpha\,\frac{\partial}{\partial b} J(w,b)
-\end{aligned}
-\]</div>
-<blockquote>
-<p>w与b同时更新。</p>
-</blockquote>
-<h3 id="4">4) 线性回归的梯度下降算法<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[
-w = w - \alpha \,\frac{1}{m}\sum_{i=1}^{m}\big(f_{w,b}(x^{(i)}) - y^{(i)}\big)\,x^{(i)}
-\]</div>
-<div class="arithmatex">\[
-b = b - \alpha \,\frac{1}{m}\sum_{i=1}^{m}\big(f_{w,b}(x^{(i)}) - y^{(i)}\big)
+\begin{align*}
+&amp;\text{repeat until convergence:}\;\lbrace \\
+&amp;\;\;\;w_j = w_j - \alpha \frac{\partial J(\mathbf{w},b)}{\partial w_j} \tag{8}\; &amp; \text{for j := 0..n-1} \\
+&amp;\;\;\;\;\;b = b - \alpha \frac{\partial J(\mathbf{w},b)}{\partial b} \\
+&amp;\rbrace
+\end{align*}
 \]</div>
 <ul>
-<li>
-<p>根据初始化参数w与b的不同，可能会得到不同的J的局部最小值。（如下图）
- <img src="/assets/post9/3.png" alt="3" width="600"></p>
-</li>
-<li>
-<p>但是事实证明，线性回归的平方误差成本函数J是一个<strong>凸函数</strong>，所以不管初始化参数w与b为何值，最终都能收敛到同一个全局最小值。</p>
-</li>
+<li>（8）式为wj与b的更新。</li>
 </ul>
-<blockquote>
-<p>这种梯度下降算法称为<strong>批量梯度下降</strong>（Batch Gradient Descent），因为每次迭代都使用了所有训练样本来计算梯度。</p>
-</blockquote>
-<hr />
-<h2 id="_7">梯度下降算法的运行<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>下图为演示实例，在本演示中初始化 w = -0.1 和 b = 900。</p>
-</blockquote>
-<p><img src="/assets/post9/4.png" alt="4" width="600"></p>
-<p>编辑于9月11日</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#定义一个函数实现梯度下降</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span> <span class="c1">#num_iters表示迭代次数</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">w_in</span><span class="p">)</span>  
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b_in</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+        <span class="n">dj_db</span><span class="p">,</span> <span class="n">dj_dw</span> <span class="o">=</span> <span class="n">compute_gradient_logistic</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>   <span class="c1">#调用计算梯度的函数</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dj_dw</span>               <span class="c1">#更新w</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dj_db</span>               <span class="c1">#更新b</span>
+
+        <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">100000</span><span class="p">:</span>     
+            <span class="n">J_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">compute_cost_logistic</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">i</span><span class="o">%</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_iters</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">: Cost </span><span class="si">{</span><span class="n">J_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">   &quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">J_history</span>         
+</code></pre></div>
+<p>编辑与9月25日</p>
 
 
 
