@@ -1,0 +1,776 @@
+/* =============================================================================
+   岩溶尘的空间 · "霓虹终端 / Neon Terminal" 赛博朋克主题
+   -----------------------------------------------------------------------------
+   设计锁定(Locks):
+   - 主强调色:霓虹青 --cy-cyan (#00eaff)  → 链接 / 激活 / 聚焦 / 主辉光
+   - 次强调色:霓虹品红 --cy-magenta        → 限量:标题故障特效 + 极少数 HUD 点缀
+   - 圆角系统:统一 2px(锐利 HUD 风,交互元素偶用切角而非大圆角)
+   - 主题锁:暗色为主;亮色为低饱和"日间 HUD",同一套强调色,不反色
+   注:Chakra Petch 为拉丁展示字体;CJK 自托管不现实,沿用 Material 的字体机制。
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap");
+
+/* ----------------------------------------------------------------------------
+   1. 调色板变量
+   ------------------------------------------------------------------------- */
+:root {
+  --cy-cyan: #00eaff;
+  --cy-cyan-deep: #0098b3;
+  --cy-magenta: #ff2e88;
+  --cy-magenta-deep: #d6006e;
+
+  --cy-display-font: "Chakra Petch", "Noto Sans SC", -apple-system, sans-serif;
+  --cy-radius: 2px;
+
+  --md-text-font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --md-code-font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+/* ---- 暗色方案(默认) ---- */
+[data-md-color-scheme="slate"] {
+  --cy-bg: #07070f;
+  --cy-bg-soft: #0b0b16;
+  --cy-surface: #11111f;
+  --cy-surface-2: #16162a;
+  --cy-line: rgba(124, 134, 184, 0.16);
+  --cy-line-bright: rgba(0, 234, 255, 0.45);
+  --cy-text: #dfe3f0;
+  --cy-text-dim: #9aa0bf;
+  --cy-text-faint: #6b7194;
+  --cy-glow: 0 0 12px rgba(0, 234, 255, 0.55);
+  --cy-glow-soft: 0 0 8px rgba(0, 234, 255, 0.30);
+
+  --md-default-bg-color: var(--cy-bg);
+  --md-default-fg-color: var(--cy-text);
+  --md-default-fg-color--light: var(--cy-text-dim);
+  --md-default-fg-color--lighter: var(--cy-text-faint);
+  --md-default-fg-color--lightest: rgba(124, 134, 184, 0.12);
+
+  --md-typeset-color: var(--cy-text);
+  --md-typeset-a-color: var(--cy-cyan);
+
+  --md-primary-fg-color: #0a0a14;
+  --md-primary-bg-color: var(--cy-text);
+  --md-accent-fg-color: var(--cy-cyan);
+
+  --md-code-bg-color: #0a0a16;
+  --md-code-fg-color: #cdd3ec;
+
+  --md-footer-bg-color: #050509;
+  --md-footer-bg-color--dark: #050509;
+}
+
+/* ---- 亮色方案(日间 HUD,同一套强调色) ---- */
+[data-md-color-scheme="default"] {
+  --cy-bg: #f5f6fb;
+  --cy-bg-soft: #eceef6;
+  --cy-surface: #ffffff;
+  --cy-surface-2: #f0f2f9;
+  --cy-line: rgba(20, 30, 70, 0.14);
+  --cy-line-bright: rgba(0, 152, 179, 0.55);
+  --cy-text: #14182a;
+  --cy-text-dim: #4d5573;
+  --cy-text-faint: #7b8199;
+  --cy-glow: 0 0 8px rgba(0, 152, 179, 0.30);
+  --cy-glow-soft: 0 0 6px rgba(0, 152, 179, 0.18);
+
+  --md-default-bg-color: var(--cy-bg);
+  --md-default-fg-color: var(--cy-text);
+  --md-default-fg-color--light: var(--cy-text-dim);
+  --md-default-fg-color--lighter: var(--cy-text-faint);
+
+  --md-typeset-color: var(--cy-text);
+  --md-typeset-a-color: var(--cy-cyan-deep);
+
+  --md-primary-fg-color: #0a0a14;
+  --md-primary-bg-color: #f5f6fb;
+  --md-accent-fg-color: var(--cy-cyan-deep);
+
+  --md-code-bg-color: #1a1d2e;
+  --md-code-fg-color: #dfe3f5;
+}
+
+/* ----------------------------------------------------------------------------
+   2. 全局底色 + 扫描线/网格叠层(fixed + pointer-events:none,合规)
+   ------------------------------------------------------------------------- */
+body {
+  background-color: var(--cy-bg);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 234, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 234, 255, 0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 120% 90% at 50% 0%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 120% 90% at 50% 0%, #000 35%, transparent 100%);
+}
+
+/* 扫描线 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.10) 0px,
+    rgba(0, 0, 0, 0.10) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
+[data-md-color-scheme="default"] body::after { opacity: 0.10; }
+
+/* 确保内容浮于叠层之上 */
+.md-container,
+.md-header,
+.md-footer { position: relative; z-index: 2; }
+
+/* ----------------------------------------------------------------------------
+   3. 排版
+   ------------------------------------------------------------------------- */
+.md-typeset {
+  font-feature-settings: "tnum";
+  line-height: 1.75;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-family: var(--cy-display-font);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.md-typeset h1 {
+  color: var(--cy-text);
+  font-weight: 700;
+  text-shadow: var(--cy-glow-soft);
+  letter-spacing: 0.02em;
+}
+
+/* h2:左侧霓虹竖条,不用文字 eyebrow */
+.md-typeset h2 {
+  position: relative;
+  padding-left: 0.85rem;
+  margin-top: 2.6em;
+}
+.md-typeset h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.12em;
+  bottom: 0.12em;
+  width: 3px;
+  background: var(--cy-cyan);
+  box-shadow: var(--cy-glow);
+  border-radius: 1px;
+}
+
+.md-typeset h3 {
+  color: var(--cy-cyan);
+}
+[data-md-color-scheme="default"] .md-typeset h3 { color: var(--cy-cyan-deep); }
+
+/* 正文链接:下划线 + hover 辉光 */
+.md-typeset a {
+  color: var(--md-typeset-a-color);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--md-typeset-a-color) 35%, transparent);
+  transition: color 0.18s ease, border-color 0.18s ease, text-shadow 0.18s ease;
+}
+.md-typeset a:hover {
+  color: var(--md-typeset-a-color);
+  border-bottom-color: var(--md-typeset-a-color);
+  text-shadow: var(--cy-glow-soft);
+}
+
+.md-typeset strong { color: var(--cy-text); font-weight: 700; }
+.md-typeset mark {
+  background: color-mix(in srgb, var(--cy-cyan) 22%, transparent);
+  color: inherit;
+  box-shadow: inset 0 -2px 0 var(--cy-cyan);
+}
+
+/* 选区与滚动条 */
+::selection {
+  background: color-mix(in srgb, var(--cy-cyan) 30%, transparent);
+  color: #fff;
+  text-shadow: var(--cy-glow-soft);
+}
+* { scrollbar-width: thin; scrollbar-color: var(--cy-cyan-deep) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--cy-cyan-deep);
+  border: 2px solid var(--cy-bg);
+  border-radius: 99px;
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--cy-cyan); }
+
+/* ----------------------------------------------------------------------------
+   4. 头部 / 导航 / 标签栏
+   ------------------------------------------------------------------------- */
+.md-header {
+  background: color-mix(in srgb, var(--cy-bg) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--cy-line);
+  box-shadow: 0 1px 0 0 var(--cy-line-bright), 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.md-header__title { font-weight: 600; }
+.md-header__topic .md-ellipsis {
+  font-family: var(--cy-display-font);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+/* 站点标题 hover 触发故障特效 */
+.md-header__topic > .md-ellipsis:hover {
+  animation: cy-glitch 0.45s steps(2, end) 1;
+  text-shadow:
+    2px 0 var(--cy-magenta),
+    -2px 0 var(--cy-cyan);
+}
+
+.md-tabs {
+  background: transparent;
+  border-bottom: 1px solid var(--cy-line);
+}
+.md-tabs__item { font-family: var(--cy-display-font); }
+.md-tabs__link {
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  transition: opacity 0.2s ease, text-shadow 0.2s ease;
+}
+.md-tabs__link:hover,
+.md-tabs__link--active {
+  opacity: 1;
+  text-shadow: var(--cy-glow-soft);
+}
+.md-tabs__item--active .md-tabs__link {
+  position: relative;
+}
+.md-tabs__item--active .md-tabs__link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--cy-cyan);
+  box-shadow: var(--cy-glow);
+}
+
+/* 搜索框 */
+.md-search__input {
+  background: color-mix(in srgb, var(--cy-surface) 80%, transparent);
+  border: 1px solid var(--cy-line);
+  border-radius: var(--cy-radius);
+}
+.md-search__input:hover { background: var(--cy-surface); }
+[data-md-toggle="search"]:checked ~ .md-header .md-search__input {
+  border-color: var(--cy-line-bright);
+}
+
+/* ----------------------------------------------------------------------------
+   5. 侧栏导航 / 目录
+   ------------------------------------------------------------------------- */
+.md-nav { font-size: 0.72rem; }
+.md-nav__title { font-family: var(--cy-display-font); letter-spacing: 0.04em; }
+.md-nav__link--active,
+.md-nav__link:focus,
+.md-nav__link:hover {
+  color: var(--cy-cyan);
+}
+[data-md-color-scheme="default"] .md-nav__link--active,
+[data-md-color-scheme="default"] .md-nav__link:hover { color: var(--cy-cyan-deep); }
+
+.md-nav__item .md-nav__link--active {
+  text-shadow: var(--cy-glow-soft);
+}
+/* 目录(右栏)激活项左侧霓虹标记 */
+.md-nav--secondary .md-nav__link--active {
+  position: relative;
+}
+
+/* ----------------------------------------------------------------------------
+   6. 代码块(终端质感:左霓虹边 + 顶部细线)
+   ------------------------------------------------------------------------- */
+.md-typeset code {
+  background: color-mix(in srgb, var(--cy-cyan) 10%, var(--md-code-bg-color));
+  color: var(--cy-cyan);
+  border: 1px solid var(--cy-line);
+  border-radius: var(--cy-radius);
+  padding: 0.1em 0.4em;
+}
+[data-md-color-scheme="default"] .md-typeset code { color: #7df9ff; }
+
+.md-typeset pre > code { background: transparent; border: 0; color: var(--md-code-fg-color); }
+
+.md-typeset pre {
+  position: relative;
+  border: 1px solid var(--cy-line);
+  border-left: 2px solid var(--cy-cyan);
+  border-radius: var(--cy-radius);
+  box-shadow: inset 1px 0 12px -8px var(--cy-cyan), 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.highlight > pre,
+.md-typeset .highlight { border-radius: var(--cy-radius); }
+
+/* 复制按钮 */
+.md-clipboard { color: var(--cy-text-faint); }
+.md-clipboard:hover { color: var(--cy-cyan); }
+
+/* ----------------------------------------------------------------------------
+   7. Admonition / 提示框
+   ------------------------------------------------------------------------- */
+.md-typeset .admonition,
+.md-typeset details {
+  background: var(--cy-surface);
+  border: 1px solid var(--cy-line);
+  border-left: 2px solid var(--cy-cyan);
+  border-radius: var(--cy-radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background: color-mix(in srgb, var(--cy-cyan) 8%, transparent);
+  font-family: var(--cy-display-font);
+  letter-spacing: 0.02em;
+}
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  background-color: var(--cy-cyan);
+}
+
+/* 引用 */
+.md-typeset blockquote {
+  border-left: 2px solid var(--cy-magenta);
+  background: color-mix(in srgb, var(--cy-magenta) 5%, transparent);
+  color: var(--cy-text-dim);
+  border-radius: 0 var(--cy-radius) var(--cy-radius) 0;
+}
+
+/* ----------------------------------------------------------------------------
+   8. 表格 / 图片
+   ------------------------------------------------------------------------- */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--cy-line);
+  border-radius: var(--cy-radius);
+  overflow: hidden;
+}
+.md-typeset table:not([class]) th {
+  background: var(--cy-surface-2);
+  font-family: var(--cy-display-font);
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--cy-line-bright);
+}
+.md-typeset table:not([class]) td { border-top: 1px solid var(--cy-line); }
+
+.md-typeset img {
+  border-radius: var(--cy-radius);
+  border: 1px solid var(--cy-line);
+}
+
+/* ----------------------------------------------------------------------------
+   9. 页脚
+   ------------------------------------------------------------------------- */
+.md-footer { border-top: 1px solid var(--cy-line-bright); }
+.md-footer-meta { background: #050509; }
+[data-md-color-scheme="default"] .md-footer-meta { background: #0a0a14; }
+
+/* ----------------------------------------------------------------------------
+   10. 故障特效(glitch)
+   ------------------------------------------------------------------------- */
+@keyframes cy-glitch {
+  0%   { clip-path: inset(0 0 0 0); transform: translate(0); }
+  20%  { clip-path: inset(20% 0 40% 0); transform: translate(-2px, 1px); }
+  40%  { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+  60%  { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 0); }
+  80%  { clip-path: inset(45% 0 30% 0); transform: translate(1px, 1px); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+}
+
+/* =============================================================================
+   11. 自定义首页(home.html)
+   ========================================================================== */
+.cyber-home { position: relative; z-index: 2; }
+
+/* ---- Hero ---- */
+.cyber-hero {
+  position: relative;
+  min-height: min(82vh, 760px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 1.2rem 5rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Tron 透视网格地面 */
+.cyber-hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 30%, color-mix(in srgb, var(--cy-cyan) 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, color-mix(in srgb, var(--cy-magenta) 12%, transparent), transparent 70%);
+}
+.cyber-hero__grid::after {
+  content: "";
+  position: absolute;
+  left: -25%;
+  right: -25%;
+  bottom: 0;
+  height: 55%;
+  background-image:
+    linear-gradient(var(--cy-line-bright) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cy-line-bright) 1px, transparent 1px);
+  background-size: 54px 54px;
+  transform: perspective(420px) rotateX(68deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(transparent, #000 70%);
+  -webkit-mask-image: linear-gradient(transparent, #000 70%);
+  animation: cy-grid-scroll 7s linear infinite;
+}
+@keyframes cy-grid-scroll {
+  to { background-position: 0 54px; }
+}
+
+.cyber-hero__eyebrow {
+  font-family: var(--cy-code-font, "JetBrains Mono", monospace);
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cy-cyan);
+  text-shadow: var(--cy-glow-soft);
+  margin-bottom: 1.4rem;
+}
+.cyber-hero__eyebrow::before { content: "> "; opacity: 0.7; }
+
+.cyber-hero__title {
+  font-family: var(--cy-display-font);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  color: var(--cy-text);
+  margin: 0;
+  position: relative;
+  text-shadow: 0 0 26px rgba(0, 234, 255, 0.35);
+}
+/* 持续轻微故障层 */
+.cyber-hero__title[data-glitch]::before,
+.cyber-hero__title[data-glitch]::after {
+  content: attr(data-glitch);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cyber-hero__title[data-glitch]::before {
+  color: var(--cy-magenta);
+  animation: cy-glitch 3.4s steps(2, end) infinite;
+  animation-delay: 0.1s;
+  opacity: 0.55;
+  z-index: -1;
+}
+.cyber-hero__title[data-glitch]::after {
+  color: var(--cy-cyan);
+  animation: cy-glitch 2.8s steps(2, end) infinite reverse;
+  opacity: 0.55;
+  z-index: -1;
+}
+
+.cyber-hero__sub {
+  max-width: 40ch;
+  margin: 1.6rem auto 2.4rem;
+  color: var(--cy-text-dim);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.cyber-hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+/* ---- 按钮(切角 HUD) ---- */
+.cy-btn {
+  --b: var(--cy-cyan);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.5rem;
+  font-family: var(--cy-display-font);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--b);
+  border: 1px solid var(--b);
+  background: color-mix(in srgb, var(--b) 8%, transparent);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+.cy-btn:hover {
+  background: color-mix(in srgb, var(--b) 20%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--b) 50%, transparent);
+}
+.cy-btn:active { transform: translateY(1px) scale(0.985); }
+.cy-btn--alt { --b: var(--cy-magenta); }
+
+/* ---- 区块 ---- */
+.cyber-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 1.2rem;
+}
+.cyber-section__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 2.2rem;
+  border-bottom: 1px solid var(--cy-line);
+  padding-bottom: 0.9rem;
+}
+.cyber-section__head h2 {
+  font-family: var(--cy-display-font);
+  font-weight: 700;
+  font-size: 1.55rem;
+  margin: 0;
+  letter-spacing: 0.02em;
+  color: var(--cy-text);
+}
+.cyber-section__head .tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cy-cyan);
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--cy-line-bright);
+  border-radius: var(--cy-radius);
+}
+
+/* ---- 卡片网格 ---- */
+.cyber-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+.cy-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.4rem 1.4rem 1.5rem;
+  background: var(--cy-surface);
+  border: 1px solid var(--cy-line);
+  border-radius: var(--cy-radius);
+  overflow: hidden;
+  transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+/* HUD 角标 */
+.cy-card::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 14px; height: 14px;
+  border-top: 1px solid var(--cy-line-bright);
+  border-right: 1px solid var(--cy-line-bright);
+  transition: width 0.22s ease, height 0.22s ease;
+}
+.cy-card:hover {
+  border-color: var(--cy-line-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4), 0 0 0 1px color-mix(in srgb, var(--cy-cyan) 20%, transparent);
+}
+.cy-card:hover::before { width: 22px; height: 22px; }
+
+.cy-card__cat {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cy-cyan);
+}
+[data-md-color-scheme="default"] .cy-card__cat { color: var(--cy-cyan-deep); }
+.cy-card__title {
+  font-family: var(--cy-display-font);
+  font-weight: 600;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  color: var(--cy-text);
+  margin: 0;
+}
+.cy-card__desc {
+  color: var(--cy-text-dim);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.cy-card__meta {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--cy-text-faint);
+}
+.cy-card a.cy-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* ----------------------------------------------------------------------------
+   11.5  PyScript 可执行代码单元(终端质感,适配明暗)
+   ------------------------------------------------------------------------- */
+.py-cell { margin: 1.6rem 0 2rem; }
+.py-code {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  padding: 0.9rem 1rem;
+  font-family: var(--md-code-font-family);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  white-space: pre;
+  color: var(--cy-text);
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--cy-line);
+  border-left: 2px solid var(--cy-cyan);
+  border-radius: var(--cy-radius);
+  box-shadow: inset 1px 0 12px -8px var(--cy-cyan);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.py-code:focus {
+  border-color: var(--cy-line-bright);
+  box-shadow: inset 1px 0 16px -8px var(--cy-cyan), 0 0 0 1px color-mix(in srgb, var(--cy-cyan) 22%, transparent);
+}
+.py-toolbar { display: flex; gap: 0.6rem; margin: 0.7rem 0 0.8rem; }
+.py-btn {
+  --b: var(--cy-text-dim);
+  padding: 0.45rem 1rem;
+  font-family: var(--cy-display-font);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--b);
+  background: color-mix(in srgb, var(--b) 8%, transparent);
+  border: 1px solid var(--b);
+  border-radius: var(--cy-radius);
+  cursor: pointer;
+  transition: background 0.18s ease, box-shadow 0.18s ease, color 0.18s ease, transform 0.1s ease;
+}
+.py-btn:hover { background: color-mix(in srgb, var(--b) 18%, transparent); }
+.py-btn:active { transform: translateY(1px) scale(0.98); }
+.py-btn--run {
+  --b: var(--cy-cyan);
+  color: var(--cy-cyan);
+}
+[data-md-color-scheme="default"] .py-btn--run { --b: var(--cy-cyan-deep); color: var(--cy-cyan-deep); }
+.py-btn--run:hover { box-shadow: 0 0 16px color-mix(in srgb, var(--cy-cyan) 45%, transparent); }
+.py-out {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  min-height: 2.4em;
+  white-space: pre-wrap;
+  font-family: var(--md-code-font-family);
+  font-size: 0.82rem;
+  color: #7df9ff;
+  background: #060610;
+  border: 1px solid var(--cy-line);
+  border-radius: var(--cy-radius);
+}
+.py-out::before {
+  content: "// output";
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  color: var(--cy-text-faint);
+}
+
+/* ----------------------------------------------------------------------------
+   11.6  Jupyter Notebook(mkdocs-jupyter)暗色适配
+   --------- 通过覆盖 Jupyter 自身的 --jp-* 变量 + 少量显式规则统一暗色 ------- */
+[data-md-color-scheme="slate"] .jupyter-wrapper {
+  --jp-layout-color0: var(--cy-bg);
+  --jp-layout-color1: var(--cy-surface);
+  --jp-layout-color2: var(--cy-surface-2);
+  --jp-content-font-color0: var(--cy-text);
+  --jp-content-font-color1: var(--cy-text);
+  --jp-content-font-color2: var(--cy-text-dim);
+  --jp-content-font-color3: var(--cy-text-faint);
+  --jp-ui-font-color1: var(--cy-text-dim);
+  --jp-ui-font-color2: var(--cy-text-faint);
+  --jp-cell-editor-background: var(--md-code-bg-color);
+  --jp-cell-editor-border-color: var(--cy-line);
+  --jp-cell-prompt-fg-color: var(--cy-text-faint);
+  --jp-border-color0: var(--cy-line);
+  --jp-border-color1: var(--cy-line);
+  --jp-border-color2: var(--cy-line);
+  --jp-rendermime-error-background: rgba(255, 46, 136, 0.10);
+  --jp-rendermime-table-row-background: var(--cy-surface);
+  color: var(--cy-text);
+}
+/* 输出区文本:强制随暗色(避免深字落在深底上不可见) */
+[data-md-color-scheme="slate"] .jupyter-wrapper .jp-OutputArea-output,
+[data-md-color-scheme="slate"] .jupyter-wrapper .jp-OutputArea-output pre,
+[data-md-color-scheme="slate"] .jupyter-wrapper .jp-RenderedText,
+[data-md-color-scheme="slate"] .jupyter-wrapper .jp-RenderedText pre {
+  color: var(--cy-text);
+}
+/* stderr / 错误输出:改为暗底 + 品红左条,而非刺眼浅粉 */
+[data-md-color-scheme="slate"] .jupyter-wrapper .jp-RenderedText[data-mime-type$="stderr"],
+[data-md-color-scheme="slate"] .jupyter-wrapper .jp-OutputArea-output[data-mime-type$="stderr"] {
+  background: rgba(255, 46, 136, 0.08) !important;
+  border-left: 2px solid var(--cy-magenta);
+  color: var(--cy-text-dim) !important;
+  border-radius: var(--cy-radius);
+}
+/* 输入提示 In[ ]: / Out[ ]: */
+[data-md-color-scheme="slate"] .jupyter-wrapper .jp-InputPrompt,
+[data-md-color-scheme="slate"] .jupyter-wrapper .jp-OutputPrompt {
+  color: var(--cy-text-faint);
+}
+/* matplotlib 等图片输出:留白边框 + 圆角,与卡片一致 */
+.jupyter-wrapper .jp-OutputArea-output img {
+  border-radius: var(--cy-radius);
+  background: #fff;            /* 图本身多为白底,保持可读 */
+  padding: 4px;
+}
+
+/* ----------------------------------------------------------------------------
+   12. 移动端
+   ------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .cyber-hero { min-height: 70vh; padding: 4.5rem 1rem 3.5rem; }
+  .cyber-section { padding: 2.8rem 1rem; }
+  .cyber-grid { grid-template-columns: 1fr; }
+}
+
+/* ----------------------------------------------------------------------------
+   13. 降级:尊重 prefers-reduced-motion(非协商项)
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cyber-hero__grid::after { animation: none; }
+  .cyber-hero__title[data-glitch]::before,
+  .cyber-hero__title[data-glitch]::after { animation: none; opacity: 0.25; }
+  .md-header__topic > .md-ellipsis:hover { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}
