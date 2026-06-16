@@ -1,15 +1,44 @@
 site_name: 岩溶尘的空间
 site_url: https://blog.yrc-bot.xyz
 repo_url: https://github.com/yrc-better/yrc-blog
+site_description: 岩溶尘的个人博客 · 生活随笔与学习笔记
 
 theme:
   name: material
   language: zh
-  features:
-    - content.code.copy
-    - content.tabs.link
-  #  - navigation.instant
   custom_dir: overrides
+  palette:
+    # 暗色为主(硬默认,不跟随系统)
+    - scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/moon-waning-crescent
+        name: 切换到亮色
+    # 亮色(手动切换可用)
+    - scheme: default
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/white-balance-sunny
+        name: 切换到暗色
+  font:
+    text: Noto Sans SC
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - navigation.footer
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
 
 plugins:
   - search:
@@ -18,11 +47,13 @@ plugins:
   - mkdocs-jupyter:
       execute: true
       include_source: true
-  
+
+extra_css:
+  - stylesheets/extra.css
 
 extra_javascript:
+  - javascripts/cyberpunk.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
 
 markdown_extensions:
   - md_in_html
@@ -35,11 +66,11 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
-
-
-
-
-
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
   - 首页: index.md
@@ -53,6 +84,4 @@ nav:
       - 人工智能导论学习笔记2: posts/李宏毅人工智能导论学习笔记(二).md
       - 人工智能导论学习笔记3: posts/李宏毅人工智能导论学习笔记(三).md
       - 人工智能导论学习笔记4: posts/李宏毅人工智能导论学习笔记(四).md
-  - Python 示例: python-demo.ipynb   # 若有
-
-
+  - Python 示例: python-demo.ipynb

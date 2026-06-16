@@ -1,22 +1,21 @@
-<!-- 可执行代码块：外观像普通代码块 -->
-<div class="py-cell" style="margin:16px 0 28px;">
-  <textarea id="py-code" class="py-code" style="
-    width:100%;min-height:140px;resize:vertical;padding:12px 14px;
-    font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
-    line-height:1.55;white-space:pre;background:#f6f8fa;border:1px solid #e5e8eb;border-radius:6px;">
-# 这里可以编辑，然后点击运行
+# PyScript Demo
+
+在浏览器里直接运行 Python,无需任何后端。编辑下面的代码,点「运行」即可看到输出。
+
+<!-- 可执行代码块:样式见 stylesheets/extra.css 的 .py-cell 区块,自动适配明暗主题 -->
+<div class="py-cell" markdown="0">
+  <textarea id="py-code" class="py-code" spellcheck="false"># 这里可以编辑，然后点击运行
 print("Hello, 这是一个可编辑、可运行的代码块！")
 for i in range(3):
     print("第", i+1, "行")
-  </textarea>
+</textarea>
 
-  <div class="py-toolbar" style="margin:8px 0 10px;display:flex;gap:8px;">
-    <button id="py-run"   style="padding:6px 10px;border:0;border-radius:6px;background:#2962ff;color:#fff;cursor:pointer;">运行</button>
-    <button id="py-clear" style="padding:6px 10px;border:0;border-radius:6px;background:#eaeef2;color:#333;cursor:pointer;">清空输出</button>
+  <div class="py-toolbar">
+    <button id="py-run" class="py-btn py-btn--run" type="button">▶ 运行</button>
+    <button id="py-clear" class="py-btn" type="button">清空输出</button>
   </div>
 
-  <pre id="py-out" class="py-out" style="
-    background:#0f172a;color:#e2e8f0;padding:10px 12px;border-radius:6px;min-height:1.6em;white-space:pre-wrap;"></pre>
+  <pre id="py-out" class="py-out" aria-live="polite"></pre>
 </div>
 
 <!-- 全部用 Python 绑定事件（避免 JS 等待 pyodide 的时序问题） -->
