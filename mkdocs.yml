@@ -74,10 +74,6 @@ markdown_extensions:
 
 nav:
   - 首页: index.md
-  - 实验:
-      - 实验 001:正弦曲线与直方图: experiments/exp-001.ipynb
-      - 实验 002:xxx: experiments/exp-002.ipynb
-      - "PyScript Demo": labs/pyscript-demo.md
   - 博文:
       - 复旦江湾研0租房经验: posts/复旦江湾研0租房经验.md
       - 人工智能导论学习笔记1: posts/李宏毅人工智能导论学习笔记(一).md
