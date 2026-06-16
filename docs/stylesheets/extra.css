@@ -412,13 +412,13 @@ body::after {
 /* ---- Hero ---- */
 .cyber-hero {
   position: relative;
-  min-height: min(82vh, 760px);
+  min-height: min(64vh, 560px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 6rem 1.2rem 5rem;
+  padding: 5rem 1.2rem 3.5rem;
   overflow: hidden;
   isolation: isolate;
 }
@@ -636,73 +636,128 @@ body::after {
 }
 
 /* ----------------------------------------------------------------------------
-   11.5  PyScript 可执行代码单元(终端质感,适配明暗)
+   11.5  个人主页板块(个人简介 + 论文/项目/博文 入口)
    ------------------------------------------------------------------------- */
-.py-cell { margin: 1.6rem 0 2rem; }
-.py-code {
-  width: 100%;
-  min-height: 150px;
-  resize: vertical;
-  padding: 0.9rem 1rem;
-  font-family: var(--md-code-font-family);
-  font-size: 0.82rem;
-  line-height: 1.6;
-  white-space: pre;
-  color: var(--cy-text);
-  background: var(--md-code-bg-color);
-  border: 1px solid var(--cy-line);
-  border-left: 2px solid var(--cy-cyan);
-  border-radius: var(--cy-radius);
-  box-shadow: inset 1px 0 12px -8px var(--cy-cyan);
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+/* ---- 个人简介 ---- */
+.cyber-about { max-width: 1100px; margin: 0 auto; padding: 3.5rem 1.2rem; }
+.cyber-about__inner {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 2.4rem;
+  align-items: center;
 }
-.py-code:focus {
-  border-color: var(--cy-line-bright);
-  box-shadow: inset 1px 0 16px -8px var(--cy-cyan), 0 0 0 1px color-mix(in srgb, var(--cy-cyan) 22%, transparent);
-}
-.py-toolbar { display: flex; gap: 0.6rem; margin: 0.7rem 0 0.8rem; }
-.py-btn {
-  --b: var(--cy-text-dim);
-  padding: 0.45rem 1rem;
+.cyber-monogram {
+  position: relative;
+  width: 168px;
+  height: 168px;
+  display: grid;
+  place-items: center;
   font-family: var(--cy-display-font);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--b);
-  background: color-mix(in srgb, var(--b) 8%, transparent);
-  border: 1px solid var(--b);
-  border-radius: var(--cy-radius);
-  cursor: pointer;
-  transition: background 0.18s ease, box-shadow 0.18s ease, color 0.18s ease, transform 0.1s ease;
-}
-.py-btn:hover { background: color-mix(in srgb, var(--b) 18%, transparent); }
-.py-btn:active { transform: translateY(1px) scale(0.98); }
-.py-btn--run {
-  --b: var(--cy-cyan);
+  font-weight: 700;
+  font-size: 2.7rem;
+  letter-spacing: 0.12em;
   color: var(--cy-cyan);
+  background:
+    radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--cy-cyan) 16%, transparent), transparent 62%),
+    var(--cy-surface);
+  border: 1px solid var(--cy-line-bright);
+  border-radius: var(--cy-radius);
+  text-shadow: var(--cy-glow);
+  overflow: hidden;
 }
-[data-md-color-scheme="default"] .py-btn--run { --b: var(--cy-cyan-deep); color: var(--cy-cyan-deep); }
-.py-btn--run:hover { box-shadow: 0 0 16px color-mix(in srgb, var(--cy-cyan) 45%, transparent); }
-.py-out {
-  margin: 0;
-  padding: 0.8rem 1rem;
-  min-height: 2.4em;
-  white-space: pre-wrap;
-  font-family: var(--md-code-font-family);
-  font-size: 0.82rem;
-  color: #7df9ff;
-  background: #060610;
+.cyber-monogram::before,
+.cyber-monogram::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+.cyber-monogram::before { top: 7px; left: 7px; border-top: 2px solid var(--cy-cyan); border-left: 2px solid var(--cy-cyan); }
+.cyber-monogram::after  { bottom: 7px; right: 7px; border-bottom: 2px solid var(--cy-cyan); border-right: 2px solid var(--cy-cyan); }
+.cyber-monogram img { width: 100%; height: 100%; object-fit: cover; }
+
+.cyber-about__name {
+  font-family: var(--cy-display-font);
+  font-weight: 700;
+  font-size: 1.9rem;
+  margin: 0 0 0.35rem;
+  color: var(--cy-text);
+}
+.cyber-about__role {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--cy-cyan);
+  margin: 0 0 1rem;
+}
+[data-md-color-scheme="default"] .cyber-about__role { color: var(--cy-cyan-deep); }
+.cyber-about__bio {
+  color: var(--cy-text-dim);
+  line-height: 1.85;
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
+}
+.cyber-about__links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.cy-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.95rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--cy-text-dim);
   border: 1px solid var(--cy-line);
   border-radius: var(--cy-radius);
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.py-out::before {
-  content: "// output";
-  display: block;
-  margin-bottom: 0.4rem;
-  font-size: 0.66rem;
-  letter-spacing: 0.12em;
-  color: var(--cy-text-faint);
+.cy-contact:hover { color: var(--cy-cyan); border-color: var(--cy-line-bright); box-shadow: var(--cy-glow-soft); }
+.cy-contact svg { width: 1.1em; height: 1.1em; fill: currentColor; }
+
+/* ---- 三入口 portals ---- */
+.cyber-portals { max-width: 1100px; margin: 0 auto; padding: 1rem 1.2rem 3.5rem; }
+.cyber-portals__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.cy-portal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.7rem 1.6rem;
+  background: var(--cy-surface);
+  border: 1px solid var(--cy-line);
+  border-radius: var(--cy-radius);
+  overflow: hidden;
+  transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+.cy-portal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cy-cyan);
+  box-shadow: var(--cy-glow);
+  transition: width 0.3s ease;
+}
+.cy-portal:hover {
+  border-color: var(--cy-line-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4);
+}
+.cy-portal:hover::before { width: 100%; }
+.cy-portal__icon { width: 2.1rem; height: 2.1rem; color: var(--cy-cyan); margin-bottom: 0.3rem; }
+[data-md-color-scheme="default"] .cy-portal__icon { color: var(--cy-cyan-deep); }
+.cy-portal__icon svg { width: 100%; height: 100%; fill: currentColor; }
+.cy-portal__label { font-family: var(--cy-display-font); font-weight: 700; font-size: 1.35rem; color: var(--cy-text); margin: 0; }
+.cy-portal__desc { color: var(--cy-text-dim); font-size: 0.86rem; line-height: 1.65; margin: 0; }
+.cy-portal__arrow { margin-top: 0.5rem; font-family: "JetBrains Mono", monospace; color: var(--cy-cyan); font-size: 0.78rem; letter-spacing: 0.12em; }
+[data-md-color-scheme="default"] .cy-portal__arrow { color: var(--cy-cyan-deep); }
+.cy-portal a.cy-portal__link::after { content: ""; position: absolute; inset: 0; }
+
+@media (max-width: 768px) {
+  .cyber-about__inner { grid-template-columns: 1fr; gap: 1.4rem; justify-items: start; }
+  .cyber-monogram { width: 124px; height: 124px; font-size: 2rem; }
+  .cyber-portals__grid { grid-template-columns: 1fr; }
 }
 
 /* ----------------------------------------------------------------------------

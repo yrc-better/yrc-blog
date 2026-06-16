@@ -1,9 +1,10 @@
 {% extends "main.html" %}
 
 <!--
-  自定义首页 · 霓虹终端 hero + 内容卡片
-  用法:index.md front-matter 设 `template: home.html` 与 `hide: [navigation, toc]`
-  hero 放在 tabs block 内以获得全幅(full-bleed)布局;content block 留空。
+  自定义首页 · 霓虹终端
+  结构:hero → 个人简介 → 论文/项目/博文 入口 → 最近博文
+  hero 放在 tabs block 内以获得全幅布局;content block 留空。
+  图标使用 Material for MkDocs 内置图标(.icons/...),非手搓 SVG。
 -->
 
 {% block tabs %}
@@ -15,11 +16,61 @@
       <div class="cyber-hero__grid" aria-hidden="true"></div>
       <p class="cyber-hero__eyebrow"><span class="type" data-type="生活、随笔与学习笔记">生活、随笔与学习笔记</span></p>
       <h1 class="cyber-hero__title" data-glitch="岩溶尘的空间">岩溶尘的空间</h1>
-      <p class="cyber-hero__sub">复旦江湾的研0新生。在这里写下生活的切片、随手的思考,以及把书读薄的学习笔记。</p>
-      <div class="cyber-hero__cta">
-        <a class="cy-btn" href="#posts">// 博文</a>
-      </div>
+      <p class="cyber-hero__sub">在这里写学习笔记、做项目、记录生活。</p>
     </header>
+
+    <!-- ===================== 个人简介 ===================== -->
+    <section class="cyber-about" id="about">
+      <div class="cyber-about__inner">
+        <!-- 头像:如需换成照片,把下面整个 .cyber-monogram 替换为
+             <div class="cyber-monogram"><img src="../assets/avatar.jpg" alt="岩溶尘"></div> -->
+        <div class="cyber-monogram" aria-hidden="true">YRC</div>
+        <div class="cyber-about__text">
+          <h2 class="cyber-about__name">岩溶尘</h2>
+          <p class="cyber-about__role">复旦大学 25 级硕士 · AI 技术爱好者</p>
+          <p class="cyber-about__bio">复旦大学 25 级硕士,AI 技术爱好者。在这片空间里整理我的学习笔记、项目实践与生活随笔。</p>
+          <div class="cyber-about__links">
+            <a class="cy-contact" href="mailto:25213080092@m.fudan.edu.cn">
+              {% include ".icons/material/email-outline.svg" %} Email
+            </a>
+            <a class="cy-contact" href="https://github.com/yrc-better" target="_blank" rel="noopener">
+              {% include ".icons/fontawesome/brands/github.svg" %} GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 三入口 ===================== -->
+    <section class="cyber-portals" id="portals">
+      <div class="cyber-portals__grid">
+
+        <article class="cy-portal">
+          <span class="cy-portal__icon">{% include ".icons/material/file-document-outline.svg" %}</span>
+          <h3 class="cy-portal__label">论文</h3>
+          <p class="cy-portal__desc">研究论文与精读笔记。</p>
+          <span class="cy-portal__arrow">进入 →</span>
+          <a class="cy-portal__link" href="papers/" aria-label="论文"></a>
+        </article>
+
+        <article class="cy-portal">
+          <span class="cy-portal__icon">{% include ".icons/octicons/repo-16.svg" %}</span>
+          <h3 class="cy-portal__label">项目</h3>
+          <p class="cy-portal__desc">动手做的项目与实践。</p>
+          <span class="cy-portal__arrow">进入 →</span>
+          <a class="cy-portal__link" href="projects/" aria-label="项目"></a>
+        </article>
+
+        <article class="cy-portal">
+          <span class="cy-portal__icon">{% include ".icons/material/notebook-outline.svg" %}</span>
+          <h3 class="cy-portal__label">博文</h3>
+          <p class="cy-portal__desc">学习笔记与生活随笔。</p>
+          <span class="cy-portal__arrow">查看 →</span>
+          <a class="cy-portal__link" href="#posts" aria-label="博文"></a>
+        </article>
+
+      </div>
+    </section>
 
     <!-- ===================== 最近博文 ===================== -->
     <div class="cyber-section" id="posts">
