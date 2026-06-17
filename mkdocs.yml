@@ -1,11 +1,11 @@
-site_name: 岩溶尘的空间
+site_name: "synn's space"
 site_url: https://blog.yrc-bot.xyz
 repo_url: https://github.com/yrc-better/yrc-blog
-site_description: 岩溶尘的个人博客 · 生活随笔与学习笔记
+site_description: "synn's personal blog with notes, projects and life"
 
 theme:
   name: material
-  language: zh
+  language: en
   custom_dir: overrides
   palette:
     # 暗色为主(硬默认,不跟随系统)
@@ -14,14 +14,14 @@ theme:
       accent: cyan
       toggle:
         icon: material/moon-waning-crescent
-        name: 切换到亮色
+        name: Switch to light mode
     # 亮色(手动切换可用)
     - scheme: default
       primary: black
       accent: cyan
       toggle:
         icon: material/white-balance-sunny
-        name: 切换到暗色
+        name: Switch to dark mode
   font:
     text: Noto Sans SC
     code: JetBrains Mono
@@ -42,7 +42,7 @@ theme:
 
 plugins:
   - search:
-      lang: zh
+      lang: [en, zh]
 # - markdown-exec
   - mkdocs-jupyter:
       execute: true
@@ -73,13 +73,13 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
-  - 首页: index.md
-  - 论文: papers/index.md
-  - 项目: projects/index.md
-  - 博文:
-      - 复旦江湾研0租房经验: posts/复旦江湾研0租房经验.md
-      - 人工智能导论学习笔记1: posts/李宏毅人工智能导论学习笔记(一).md
-      - 人工智能导论学习笔记2: posts/李宏毅人工智能导论学习笔记(二).md
-      - 人工智能导论学习笔记3: posts/李宏毅人工智能导论学习笔记(三).md
-      - 人工智能导论学习笔记4: posts/李宏毅人工智能导论学习笔记(四).md
-  - Python 示例: python-demo.ipynb
+  - Home: index.md
+  - Papers: papers/index.md
+  - Projects: projects/index.md
+  - Blog:
+      - Renting near Fudan Jiangwan: posts/复旦江湾研0租房经验.md
+      - Intro to Generative AI, Notes 1: posts/李宏毅人工智能导论学习笔记(一).md
+      - Intro to Generative AI, Notes 2: posts/李宏毅人工智能导论学习笔记(二).md
+      - Intro to Generative AI, Notes 3: posts/李宏毅人工智能导论学习笔记(三).md
+      - Intro to Generative AI, Notes 4: posts/李宏毅人工智能导论学习笔记(四).md
+  - Python Demo: python-demo.ipynb

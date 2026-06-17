@@ -1,15 +1,15 @@
-# 论文
+# Papers
 
-AI 方向的研究论文与精读笔记会陆续整理到这里。
+Research papers and close-reading notes in AI will be collected here over time.
 
-!!! note "整理中"
-    这一栏正在准备,很快会有内容。
+!!! note "Work in progress"
+    This section is being put together. Content is coming soon.
 
 <!--
-  添加论文条目示例(去掉本段注释即可使用):
+  Example entry (remove this comment block to use it):
 
-  ## 论文标题
-  **作者** · 会议 / 期刊 · 年份 · [PDF](链接) · [代码](链接)
+  ## Paper title
+  **Authors** · Conference / Journal · Year · [PDF](link) · [Code](link)
 
-  一句话简介:这篇论文做了什么、解决了什么问题、你的收获。
+  One-line summary: what the paper does, the problem it solves, and your takeaways.
 -->

@@ -1,15 +1,15 @@
-# 项目
+# Projects
 
-这里收录我做过的项目与实践,包括代码、工具与实验。
+Things I build and tinker with: code, tools, and experiments.
 
-!!! note "整理中"
-    项目列表正在准备,很快会有内容。
+!!! note "Work in progress"
+    The project list is being put together. Content is coming soon.
 
 <!--
-  添加项目条目示例(去掉本段注释即可使用):
+  Example entry (remove this comment block to use it):
 
-  ## 项目名称
-  **技术栈** · [仓库](链接) · [演示](链接)
+  ## Project name
+  **Stack** · [Repo](link) · [Demo](link)
 
-  一句话简介:这个项目是做什么的、解决了什么问题。
+  One-line summary: what the project is and the problem it solves.
 -->

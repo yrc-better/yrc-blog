@@ -1,10 +1,10 @@
 {% extends "main.html" %}
 
 <!--
-  自定义首页 · 霓虹终端
-  结构:hero → 个人简介 → 论文/项目/博文 入口 → 最近博文
-  hero 放在 tabs block 内以获得全幅布局;content block 留空。
-  图标使用 Material for MkDocs 内置图标(.icons/...),非手搓 SVG。
+  Custom homepage · Neon Terminal
+  Structure: hero → about → Papers/Projects/Blog portals → recent posts
+  Hero lives in the tabs block for a full-bleed layout; content block stays empty.
+  Icons use Material for MkDocs built-in icons (.icons/...), not hand-rolled SVG.
 -->
 
 {% block tabs %}
@@ -14,21 +14,21 @@
     <!-- ===================== HERO ===================== -->
     <header class="cyber-hero">
       <div class="cyber-hero__grid" aria-hidden="true"></div>
-      <p class="cyber-hero__eyebrow"><span class="type" data-type="生活、随笔与学习笔记">生活、随笔与学习笔记</span></p>
-      <h1 class="cyber-hero__title" data-glitch="岩溶尘的空间">岩溶尘的空间</h1>
-      <p class="cyber-hero__sub">在这里写学习笔记、做项目、记录生活。</p>
+      <p class="cyber-hero__eyebrow"><span class="type" data-type="Notes, projects and life">Notes, projects and life</span></p>
+      <h1 class="cyber-hero__title" data-glitch="synn's space">synn's space</h1>
+      <p class="cyber-hero__sub">Study notes, side projects, and bits of everyday life.</p>
     </header>
 
-    <!-- ===================== 个人简介 ===================== -->
+    <!-- ===================== ABOUT ===================== -->
     <section class="cyber-about" id="about">
       <div class="cyber-about__inner">
-        <!-- 头像:如需换成照片,把下面整个 .cyber-monogram 替换为
-             <div class="cyber-monogram"><img src="../assets/avatar.jpg" alt="岩溶尘"></div> -->
-        <div class="cyber-monogram" aria-hidden="true">YRC</div>
+        <!-- Avatar: to use a photo, replace the whole .cyber-monogram below with
+             <div class="cyber-monogram"><img src="../assets/avatar.jpg" alt="synn"></div> -->
+        <div class="cyber-monogram" aria-hidden="true">synn</div>
         <div class="cyber-about__text">
-          <h2 class="cyber-about__name">岩溶尘</h2>
-          <p class="cyber-about__role">复旦大学 25 级硕士 · AI 技术爱好者</p>
-          <p class="cyber-about__bio">复旦大学 25 级硕士,AI 技术爱好者。在这片空间里整理我的学习笔记、项目实践与生活随笔。</p>
+          <h2 class="cyber-about__name">synn</h2>
+          <p class="cyber-about__role">MSc @ Fudan University · AI enthusiast</p>
+          <p class="cyber-about__bio">Master's student at Fudan University (class of 2025) and an AI enthusiast. This is where I keep my study notes, side projects, and bits of everyday life.</p>
           <div class="cyber-about__links">
             <a class="cy-contact" href="mailto:25213080092@m.fudan.edu.cn">
               {% include ".icons/material/email-outline.svg" %} Email
@@ -41,83 +41,83 @@
       </div>
     </section>
 
-    <!-- ===================== 三入口 ===================== -->
+    <!-- ===================== PORTALS ===================== -->
     <section class="cyber-portals" id="portals">
       <div class="cyber-portals__grid">
 
         <article class="cy-portal">
           <span class="cy-portal__icon">{% include ".icons/material/file-document-outline.svg" %}</span>
-          <h3 class="cy-portal__label">论文</h3>
-          <p class="cy-portal__desc">研究论文与精读笔记。</p>
-          <span class="cy-portal__arrow">进入 →</span>
-          <a class="cy-portal__link" href="papers/" aria-label="论文"></a>
+          <h3 class="cy-portal__label">Papers</h3>
+          <p class="cy-portal__desc">Research papers and reading notes.</p>
+          <span class="cy-portal__arrow">Enter →</span>
+          <a class="cy-portal__link" href="papers/" aria-label="Papers"></a>
         </article>
 
         <article class="cy-portal">
           <span class="cy-portal__icon">{% include ".icons/octicons/repo-16.svg" %}</span>
-          <h3 class="cy-portal__label">项目</h3>
-          <p class="cy-portal__desc">动手做的项目与实践。</p>
-          <span class="cy-portal__arrow">进入 →</span>
-          <a class="cy-portal__link" href="projects/" aria-label="项目"></a>
+          <h3 class="cy-portal__label">Projects</h3>
+          <p class="cy-portal__desc">Things I build and tinker with.</p>
+          <span class="cy-portal__arrow">Enter →</span>
+          <a class="cy-portal__link" href="projects/" aria-label="Projects"></a>
         </article>
 
         <article class="cy-portal">
           <span class="cy-portal__icon">{% include ".icons/material/notebook-outline.svg" %}</span>
-          <h3 class="cy-portal__label">博文</h3>
-          <p class="cy-portal__desc">学习笔记与生活随笔。</p>
-          <span class="cy-portal__arrow">查看 →</span>
-          <a class="cy-portal__link" href="#posts" aria-label="博文"></a>
+          <h3 class="cy-portal__label">Blog</h3>
+          <p class="cy-portal__desc">Study notes and life essays.</p>
+          <span class="cy-portal__arrow">Browse →</span>
+          <a class="cy-portal__link" href="#posts" aria-label="Blog"></a>
         </article>
 
       </div>
     </section>
 
-    <!-- ===================== 最近博文 ===================== -->
+    <!-- ===================== RECENT POSTS ===================== -->
     <div class="cyber-section" id="posts">
       <div class="cyber-section__head">
-        <h2>最近博文</h2>
+        <h2>Recent Posts</h2>
         <span class="tag">posts</span>
       </div>
       <div class="cyber-grid">
 
         <article class="cy-card">
-          <span class="cy-card__cat">生活 · LIFE</span>
-          <h3 class="cy-card__title">复旦江湾研0租房经验(芳草寓)</h3>
-          <p class="cy-card__desc">在上海租房两周多的真实入住感受:房租、通勤、隔音、公共设施与避坑提示。</p>
+          <span class="cy-card__cat">LIFE</span>
+          <h3 class="cy-card__title">Renting near Fudan's Jiangwan campus</h3>
+          <p class="cy-card__desc">Two weeks of real living notes: rent, commute, sound insulation, shared facilities, and pitfalls to avoid.</p>
           <span class="cy-card__meta">2025.08.19</span>
-          <a class="cy-card__link" href="posts/复旦江湾研0租房经验/" aria-label="复旦江湾研0租房经验"></a>
+          <a class="cy-card__link" href="posts/复旦江湾研0租房经验/" aria-label="Renting near Fudan Jiangwan"></a>
         </article>
 
         <article class="cy-card">
-          <span class="cy-card__cat">AI · 导论笔记 #1</span>
-          <h3 class="cy-card__title">李宏毅人工智能导论学习笔记(一)</h3>
-          <p class="cy-card__desc">什么是生成式 AI、什么是机器学习,从课程定位到核心概念的开篇梳理。</p>
+          <span class="cy-card__cat">AI · NOTES #1</span>
+          <h3 class="cy-card__title">Intro to Generative AI, Notes (1)</h3>
+          <p class="cy-card__desc">What generative AI and machine learning are, from course framing to the core ideas.</p>
           <span class="cy-card__meta">SERIES · 01 / 04</span>
-          <a class="cy-card__link" href="posts/李宏毅人工智能导论学习笔记(一)/" aria-label="人工智能导论学习笔记一"></a>
+          <a class="cy-card__link" href="posts/李宏毅人工智能导论学习笔记(一)/" aria-label="Generative AI notes 1"></a>
         </article>
 
         <article class="cy-card">
-          <span class="cy-card__cat">AI · 导论笔记 #2</span>
-          <h3 class="cy-card__title">李宏毅人工智能导论学习笔记(二)</h3>
-          <p class="cy-card__desc">类神经网络、Transformer 与文字接龙:生成策略背后的结构直觉。</p>
+          <span class="cy-card__cat">AI · NOTES #2</span>
+          <h3 class="cy-card__title">Intro to Generative AI, Notes (2)</h3>
+          <p class="cy-card__desc">Neural networks, Transformers, and next-token prediction: the intuition behind generation.</p>
           <span class="cy-card__meta">SERIES · 02 / 04</span>
-          <a class="cy-card__link" href="posts/李宏毅人工智能导论学习笔记(二)/" aria-label="人工智能导论学习笔记二"></a>
+          <a class="cy-card__link" href="posts/李宏毅人工智能导论学习笔记(二)/" aria-label="Generative AI notes 2"></a>
         </article>
 
         <article class="cy-card">
-          <span class="cy-card__cat">AI · 导论笔记 #3</span>
-          <h3 class="cy-card__title">李宏毅人工智能导论学习笔记(三)</h3>
-          <p class="cy-card__desc">模型如何彼此讨论、组合与优化,从单模型走向多模型协作的笔记。</p>
+          <span class="cy-card__cat">AI · NOTES #3</span>
+          <h3 class="cy-card__title">Intro to Generative AI, Notes (3)</h3>
+          <p class="cy-card__desc">How models discuss, combine, and refine, moving from a single model to multi-model collaboration.</p>
           <span class="cy-card__meta">SERIES · 03 / 04</span>
-          <a class="cy-card__link" href="posts/李宏毅人工智能导论学习笔记(三)/" aria-label="人工智能导论学习笔记三"></a>
+          <a class="cy-card__link" href="posts/李宏毅人工智能导论学习笔记(三)/" aria-label="Generative AI notes 3"></a>
         </article>
 
         <article class="cy-card">
-          <span class="cy-card__cat">AI · 导论笔记 #4</span>
-          <h3 class="cy-card__title">李宏毅人工智能导论学习笔记(四)</h3>
-          <p class="cy-card__desc">RAG、工具使用与团队式 prompt:让模型把作业任务拆解得更聪明。</p>
+          <span class="cy-card__cat">AI · NOTES #4</span>
+          <h3 class="cy-card__title">Intro to Generative AI, Notes (4)</h3>
+          <p class="cy-card__desc">RAG, tool use, and team-style prompting that gets models to break tasks down more cleverly.</p>
           <span class="cy-card__meta">SERIES · 04 / 04</span>
-          <a class="cy-card__link" href="posts/李宏毅人工智能导论学习笔记(四)/" aria-label="人工智能导论学习笔记四"></a>
+          <a class="cy-card__link" href="posts/李宏毅人工智能导论学习笔记(四)/" aria-label="Generative AI notes 4"></a>
         </article>
 
       </div>
