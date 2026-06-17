@@ -77,9 +77,9 @@ nav:
   - Papers: papers/index.md
   - Projects: projects/index.md
   - Blog:
-      - Renting near Fudan Jiangwan: posts/复旦江湾研0租房经验.md
-      - Intro to Generative AI, Notes 1: posts/李宏毅人工智能导论学习笔记(一).md
-      - Intro to Generative AI, Notes 2: posts/李宏毅人工智能导论学习笔记(二).md
-      - Intro to Generative AI, Notes 3: posts/李宏毅人工智能导论学习笔记(三).md
-      - Intro to Generative AI, Notes 4: posts/李宏毅人工智能导论学习笔记(四).md
-  - Python Demo: python-demo.ipynb
+      - 复旦江湾研0租房经验: posts/复旦江湾研0租房经验.md
+      - 人工智能导论学习笔记1: posts/李宏毅人工智能导论学习笔记(一).md
+      - 人工智能导论学习笔记2: posts/李宏毅人工智能导论学习笔记(二).md
+      - 人工智能导论学习笔记3: posts/李宏毅人工智能导论学习笔记(三).md
+      - 人工智能导论学习笔记4: posts/李宏毅人工智能导论学习笔记(四).md
+  - Python 示例: python-demo.ipynb
