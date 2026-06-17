@@ -412,13 +412,13 @@ body::after {
 /* ---- Hero ---- */
 .cyber-hero {
   position: relative;
-  min-height: min(64vh, 560px);
+  min-height: min(50vh, 440px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 5rem 1.2rem 3.5rem;
+  padding: 3rem 1.2rem 3rem;
   overflow: hidden;
   isolation: isolate;
 }
@@ -814,7 +814,7 @@ body::after {
    12. 移动端
    ------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  .cyber-hero { min-height: 70vh; padding: 4.5rem 1rem 3.5rem; }
+  .cyber-hero { min-height: min(58vh, 400px); padding: 2.75rem 1rem 2.5rem; }
   .cyber-section { padding: 2.8rem 1rem; }
   .cyber-grid { grid-template-columns: 1fr; }
 }
