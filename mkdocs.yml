@@ -76,6 +76,7 @@ nav:
   - Papers: papers/index.md
   - Projects: projects/index.md
   - Blog:
+      - posts/index.md
       - 复旦江湾研0租房经验: posts/复旦江湾研0租房经验.md
       - 人工智能导论学习笔记1: posts/李宏毅人工智能导论学习笔记(一).md
       - 人工智能导论学习笔记2: posts/李宏毅人工智能导论学习笔记(二).md
