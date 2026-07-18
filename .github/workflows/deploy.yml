@@ -10,8 +10,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout blog
         uses: actions/checkout@v4
+
+      - name: Checkout band simulator
+        uses: actions/checkout@v4
+        with:
+          repository: yrc-better/stay-for-the-encore
+          ref: main
+          path: .build/stay-for-the-encore
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: .build/stay-for-the-encore/package-lock.json
+
+      - name: Build band simulator
+        working-directory: .build/stay-for-the-encore
+        run: |
+          npm ci
+          npm run build:blog
+
+      - name: Add band simulator to blog
+        run: |
+          rm -rf docs/projects/band-simulator
+          mkdir -p docs/projects/band-simulator
+          cp -R .build/stay-for-the-encore/dist/client/. docs/projects/band-simulator/
 
       - name: Setup Python
         uses: actions/setup-python@v5

@@ -4,15 +4,52 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="dark">
-    <title>乐队模拟器</title>
+    <title>乐队模拟器 · 构建期占位页</title>
     <style>
       html,
       body {
         min-height: 100%;
         margin: 0;
         background: #07070f;
+        color: #f4f4f7;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      main {
+        max-width: 42rem;
+        padding: 2rem;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
+      }
+
+      p {
+        margin: 0.5rem 0;
+        color: #b9bac4;
+        line-height: 1.7;
       }
     </style>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <h1>乐队模拟器尚未构建</h1>
+      <p>这是源码仓库中的构建期占位页，不是线上游戏内容。</p>
+      <p>
+        部署工作流会先构建 stay-for-the-encore，再用生成的
+        dist/client 完整覆盖此目录。
+      </p>
+    </main>
+  </body>
 </html>
