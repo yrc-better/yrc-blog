@@ -598,6 +598,10 @@ body::after {
   transform: translateY(-3px);
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4), 0 0 0 1px color-mix(in srgb, var(--cy-cyan) 20%, transparent);
 }
+.cy-card:has(a.cy-card__link:focus-visible) {
+  border-color: var(--cy-line-bright);
+  box-shadow: 0 0 0 2px var(--cy-bg), 0 0 0 4px var(--cy-cyan);
+}
 .cy-card:hover::before { width: 22px; height: 22px; }
 
 .cy-card__cat {
@@ -629,11 +633,14 @@ body::after {
   font-size: 0.72rem;
   color: var(--cy-text-faint);
 }
-.cy-card a.cy-card__link::after {
-  content: "";
+.cy-card a.cy-card__link {
   position: absolute;
   inset: 0;
+  display: block;
+  border: 0;
+  text-shadow: none;
 }
+.cy-card a.cy-card__link:focus-visible { outline: none; }
 
 /* ----------------------------------------------------------------------------
    11.5  个人主页板块(个人简介 + 论文/项目/博文 入口)
