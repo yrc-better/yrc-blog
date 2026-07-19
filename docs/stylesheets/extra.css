@@ -642,6 +642,122 @@ body::after {
 }
 .cy-card a.cy-card__link:focus-visible { outline: none; }
 
+/* ---- 项目页横条 ---- */
+.cy-project-list {
+  display: grid;
+  gap: 0.9rem;
+  width: 100%;
+}
+.cy-project-card {
+  position: relative;
+  display: block;
+  margin: 0;
+  color: var(--cy-text);
+  background: var(--cy-surface);
+  border: 1px solid var(--cy-line-bright);
+  border-radius: var(--cy-radius);
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--cy-cyan) 8%, transparent),
+    0 10px 28px color-mix(in srgb, var(--cy-cyan-deep) 12%, transparent);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
+}
+.cy-project-card:hover {
+  border-color: var(--cy-cyan);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--cy-cyan) 18%, transparent);
+  transform: translateY(-1px);
+}
+.cy-project-card:has(a.cy-project-row__action:active) { transform: translateY(1px); }
+.cy-project-card:has(a.cy-project-row__action:focus-visible) {
+  border-color: var(--cy-cyan);
+  outline: 2px solid var(--cy-cyan);
+  outline-offset: 2px;
+}
+[data-md-color-scheme="slate"] .cy-project-card {
+  background: color-mix(in srgb, var(--cy-surface-2) 92%, var(--cy-cyan));
+  border-color: color-mix(in srgb, var(--cy-cyan) 58%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--cy-cyan) 13%, transparent),
+    0 12px 30px color-mix(in srgb, var(--cy-cyan-deep) 18%, transparent);
+}
+.cy-project-row__header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.35rem;
+  padding: 0.55rem 0.85rem;
+  background: color-mix(in srgb, var(--cy-cyan) 9%, var(--cy-surface));
+  border-bottom: 1px solid var(--cy-line);
+}
+.cy-project-row__icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  background: var(--cy-cyan);
+  -webkit-mask-image: var(--md-admonition-icon--note);
+  mask-image: var(--md-admonition-icon--note);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+[data-md-color-scheme="default"] .cy-project-row__icon { background: var(--cy-cyan-deep); }
+.cy-project-row__title {
+  font-family: var(--cy-display-font);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.cy-project-row__type {
+  margin-left: auto;
+  color: var(--cy-text-faint);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.cy-project-row__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.85rem 1rem 0.95rem;
+}
+[data-md-color-scheme="slate"] .cy-project-row__body {
+  background: color-mix(in srgb, var(--cy-surface-2) 96%, var(--cy-cyan));
+}
+.cy-project-row__desc {
+  color: var(--cy-text-dim);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+.md-typeset a.cy-project-row__action {
+  justify-self: start;
+  color: var(--cy-cyan);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid color-mix(in srgb, var(--cy-cyan) 45%, transparent);
+  white-space: nowrap;
+}
+.md-typeset a.cy-project-row__action::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.md-typeset a.cy-project-row__action:hover {
+  color: var(--cy-cyan);
+  border-bottom-color: var(--cy-cyan);
+  text-shadow: var(--cy-glow-soft);
+}
+[data-md-color-scheme="default"] .md-typeset a.cy-project-row__action {
+  color: var(--cy-cyan-deep);
+  border-bottom-color: color-mix(in srgb, var(--cy-cyan-deep) 45%, transparent);
+}
+
 /* ----------------------------------------------------------------------------
    11.5  个人主页板块(个人简介 + 论文/项目/博文 入口)
    ------------------------------------------------------------------------- */
@@ -824,6 +940,11 @@ body::after {
   .cyber-hero { min-height: min(58vh, 400px); padding: 2.75rem 1rem 2.5rem; }
   .cyber-section { padding: 2.8rem 1rem; }
   .cyber-grid { grid-template-columns: 1fr; }
+  .cy-project-row__body {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    padding: 0.8rem 0.85rem 0.9rem;
+  }
 }
 
 /* ----------------------------------------------------------------------------
