@@ -29,6 +29,9 @@ jobs:
 
       - name: Build band simulator
         working-directory: .build/stay-for-the-encore
+        env:
+          VITE_BASE_PATH: /yrc-blog/projects/band-simulator/
+          VITE_PUBLIC_SITE_URL: https://yrc-better.github.io/yrc-blog/projects/band-simulator/
         run: |
           npm ci
           npm run build:blog
@@ -71,4 +74,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
-          cname: blog.yrc-bot.xyz
