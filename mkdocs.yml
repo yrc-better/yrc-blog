@@ -73,7 +73,9 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Papers: papers/index.md
+  - Papers:
+      - papers/index.md
+      - 潜在同策略蒸馏: papers/latent-on-policy-self-distillation/index.md
   - Projects: projects/index.md
   - Blog:
       - posts/index.md

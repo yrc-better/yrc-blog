@@ -1,15 +1,11 @@
 # Papers
 
-Research papers and close-reading notes in AI will be collected here over time.
+这里收录我对人工智能论文的精读笔记。
 
-!!! note "Work in progress"
-    This section is being put together. Content is coming soon.
+## 潜在同策略蒸馏
 
-<!--
-  Example entry (remove this comment block to use it):
+**Latent On-Policy Self-Distillation（LOPD）** · 2026
 
-  ## Paper title
-  **Authors** · Conference / Journal · Year · [PDF](link) · [Code](link)
+LOPD把教师使用的特权上下文改造成可以从历史经验中端到端学习的潜在表示，并通过特权间隔约束维持教师优势。本文梳理它与OPD、OPSD的关系，介绍完整训练目标，并分析工具调用和代码生成实验。
 
-  One-line summary: what the paper does, the problem it solves, and your takeaways.
--->
+[阅读全文 →](latent-on-policy-self-distillation/index.md)
