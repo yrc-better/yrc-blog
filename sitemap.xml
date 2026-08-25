@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://yrc-better.github.io/yrc-blog/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-25</lastmod>
     </url>
     <url>
          <loc>https://yrc-better.github.io/yrc-blog/python-demo/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-25</lastmod>
     </url>
     <url>
          <loc>https://yrc-better.github.io/yrc-blog/papers/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-25</lastmod>
+    </url>
+    <url>
+         <loc>https://yrc-better.github.io/yrc-blog/papers/latent-on-policy-self-distillation/</loc>
+         <lastmod>2026-08-25</lastmod>
     </url>
     <url>
          <loc>https://yrc-better.github.io/yrc-blog/posts/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-25</lastmod>
     </url>
     <url>
          <loc>https://yrc-better.github.io/yrc-blog/posts/%E5%A4%8D%E6%97%A6%E6%B1%9F%E6%B9%BE%E7%A0%940%E7%A7%9F%E6%88%BF%E7%BB%8F%E9%AA%8C/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-25</lastmod>
     </url>
     <url>
          <loc>https://yrc-better.github.io/yrc-blog/projects/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-25</lastmod>
     </url>
 </urlset>
