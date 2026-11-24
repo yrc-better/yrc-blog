@@ -1,0 +1,93 @@
+---
+import { SITE } from "../../shared/site.ts";
+import { daysBetween } from "../../shared/dates.ts";
+import type { EntryKind } from "../../catalog/entries.ts";
+
+type Props = {
+  counts: Record<EntryKind, number>;
+};
+
+const { counts } = Astro.props;
+const uptime = daysBetween(new Date(SITE.onlineSince), new Date());
+
+const STATS = [
+  { label: "Papers", value: counts.paper },
+  { label: "Projects", value: counts.project },
+  { label: "Posts", value: counts.post },
+  { label: "Days online", value: uptime },
+];
+---
+
+<section class="stats cy-container" aria-label="Site statistics">
+  <dl class="stats__grid">
+    {
+      STATS.map((stat) => (
+        <div class="stats__cell">
+          <dt>{stat.label}</dt>
+          <dd>{String(stat.value).padStart(2, "0")}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<style>
+  .stats {
+    margin-top: 56px;
+  }
+
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    border-top: 1px solid var(--cy-line);
+    border-bottom: 1px solid var(--cy-line);
+  }
+
+  .stats__cell {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 4px;
+    padding: 20px 22px;
+  }
+
+  .stats__cell + .stats__cell {
+    border-left: 1px solid var(--cy-line);
+  }
+
+  .stats__cell dt {
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cy-text-faint);
+  }
+
+  .stats__cell dd {
+    margin: 0;
+    font-family: var(--cy-font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--cy-text);
+  }
+
+  .stats__cell:last-child dd {
+    color: var(--cy-yellow);
+    text-shadow: var(--cy-glow-yellow);
+  }
+
+  @media (max-width: 640px) {
+    .stats__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stats__cell:nth-child(3) {
+      border-left: 0;
+    }
+
+    .stats__cell:nth-child(n + 3) {
+      border-top: 1px solid var(--cy-line);
+    }
+  }
+</style>

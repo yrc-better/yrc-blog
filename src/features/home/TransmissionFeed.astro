@@ -1,0 +1,200 @@
+---
+import Chip from "../../primitives/Chip.astro";
+import type { Tone } from "../../primitives/HudPanel.astro";
+import { formatDate, isoDate } from "../../shared/dates.ts";
+import type { EntryKind, FeedItem } from "../../catalog/entries.ts";
+
+type Props = {
+  items: FeedItem[];
+};
+
+const { items } = Astro.props;
+
+const KIND: Record<EntryKind, { label: string; tone: Tone }> = {
+  paper: { label: "Paper", tone: "yellow" },
+  post: { label: "Post", tone: "cyan" },
+  project: { label: "Project", tone: "magenta" },
+};
+---
+
+<section class="feed cy-container" aria-labelledby="feed-title">
+  <header class="feed__head">
+    <h2 id="feed-title" class="feed__title">Incoming transmissions</h2>
+    <span class="feed__live" aria-hidden="true">● LIVE FEED</span>
+  </header>
+
+  <ol class="feed__list">
+    {
+      items.map((item, i) => (
+        <li class={`feed__row feed__row--${KIND[item.kind].tone}`}>
+          <span class="feed__seq" aria-hidden="true">
+            {String(i + 1).padStart(3, "0")}
+          </span>
+          <time class="feed__date" datetime={isoDate(item.date)}>
+            {formatDate(item.date)}
+          </time>
+          <Chip tone={KIND[item.kind].tone}>{KIND[item.kind].label}</Chip>
+          <div class="feed__text">
+            <h3 class="feed__name">
+              <a href={item.href}>{item.title}</a>
+            </h3>
+            <p class="feed__desc">{item.description}</p>
+          </div>
+          <span class="feed__arrow" aria-hidden="true">
+            →
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .feed {
+    margin-top: 72px;
+  }
+
+  .feed__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--cy-line-strong);
+  }
+
+  .feed__title {
+    margin: 0;
+    font-family: var(--cy-font-display);
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .feed__title::before {
+    content: "// ";
+    color: var(--cy-magenta);
+  }
+
+  .feed__live {
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--cy-magenta);
+    white-space: nowrap;
+    text-shadow: var(--cy-text-glow-magenta);
+  }
+
+  .feed__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .feed__row {
+    --row-accent: var(--cy-cyan);
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px 92px 88px minmax(0, 1fr) 24px;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--cy-line);
+    transition: background var(--cy-fast) var(--cy-ease);
+  }
+
+  .feed__row--yellow {
+    --row-accent: var(--cy-yellow);
+  }
+
+  .feed__row--magenta {
+    --row-accent: var(--cy-magenta);
+  }
+
+  .feed__row::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--row-accent);
+    transform: scaleY(0);
+    transition: transform var(--cy-fast) var(--cy-ease);
+  }
+
+  .feed__row:hover {
+    background: linear-gradient(90deg, var(--cy-cyan-soft), var(--cy-transparent) 70%);
+  }
+
+  .feed__row:hover::before {
+    transform: scaleY(1);
+  }
+
+  .feed__seq,
+  .feed__date {
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+    color: var(--cy-text-faint);
+  }
+
+  .feed__date {
+    color: var(--cy-text-dim);
+  }
+
+  .feed__name {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .feed__name a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  .feed__row:hover .feed__name {
+    color: var(--row-accent);
+  }
+
+  .feed__desc {
+    margin: 2px 0 0;
+    overflow: hidden;
+    font-size: 13px;
+    color: var(--cy-text-dim);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .feed__arrow {
+    color: var(--row-accent);
+    transition: transform var(--cy-fast) var(--cy-ease);
+  }
+
+  .feed__row:hover .feed__arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 720px) {
+    .feed__row {
+      grid-template-columns: auto auto 1fr;
+      gap: 8px 12px;
+    }
+
+    .feed__seq,
+    .feed__arrow {
+      display: none;
+    }
+
+    .feed__text {
+      grid-column: 1 / -1;
+    }
+
+    .feed__desc {
+      white-space: normal;
+    }
+  }
+</style>

@@ -1,0 +1,135 @@
+---
+import { listFeed } from "../catalog/entries.ts";
+import { SITE } from "../shared/site.ts";
+import { formatDate } from "../shared/dates.ts";
+
+const feed = await listFeed();
+const tickerRun = [...feed, ...feed, ...feed];
+const year = new Date().getUTCFullYear();
+---
+
+<footer class="ftr">
+  <div class="ftr__ticker" aria-hidden="true">
+    <div class="ftr__track">
+      {
+        [0, 1].map(() => (
+          <span class="ftr__run">
+            {tickerRun.map((item) => (
+              <span class="ftr__item">
+                <span class="ftr__date">{formatDate(item.date)}</span>
+                {item.title}
+                <span class="ftr__sep">///</span>
+              </span>
+            ))}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+  <div class="ftr__inner cy-container">
+    <p class="ftr__sig">
+      <span class="ftr__brand">SYNN<span class="ftr__slash">//</span>SPACE</span>
+      <span>© {year} {SITE.author.name}</span>
+    </p>
+    <p class="ftr__meta">
+      <span>Built with Astro</span>
+      <a href={SITE.repo} target="_blank" rel="noopener noreferrer">Source ↗</a>
+      <a href={`mailto:${SITE.author.email}`}>Contact</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .ftr {
+    position: relative;
+    z-index: 1;
+    margin-top: 96px;
+    border-top: 1px solid var(--cy-line);
+    background: var(--cy-void);
+  }
+
+  .ftr__ticker {
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cy-line);
+    background: var(--cy-yellow);
+    color: var(--cy-on-accent);
+  }
+
+  .ftr__track {
+    display: flex;
+    width: max-content;
+    animation: ticker 40s linear infinite;
+  }
+
+  .ftr__run {
+    display: inline-flex;
+  }
+
+  .ftr__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-right: 18px;
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .ftr__date {
+    padding: 0 6px;
+    color: var(--cy-yellow);
+    background: var(--cy-on-accent);
+  }
+
+  .ftr__sep {
+    color: var(--cy-magenta);
+  }
+
+  .ftr__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding: 28px 0 36px;
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--cy-text-faint);
+  }
+
+  .ftr__inner p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 0;
+  }
+
+  .ftr__brand {
+    font-family: var(--cy-font-display);
+    font-weight: 700;
+    color: var(--cy-text-dim);
+  }
+
+  .ftr__slash {
+    color: var(--cy-magenta);
+  }
+
+  .ftr__meta a {
+    color: var(--cy-text-dim);
+    transition: color var(--cy-fast) var(--cy-ease);
+  }
+
+  .ftr__meta a:hover {
+    color: var(--cy-cyan);
+  }
+
+  @keyframes ticker {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

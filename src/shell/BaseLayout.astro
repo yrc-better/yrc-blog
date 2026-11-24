@@ -1,0 +1,71 @@
+---
+import "../styles/global.css";
+import { SITE } from "../shared/site.ts";
+import { asset } from "../shared/url.ts";
+import Backdrop from "./Backdrop.astro";
+import SiteHeader, { type NavKey } from "./SiteHeader.astro";
+import SiteFooter from "./SiteFooter.astro";
+import CommandPalette from "./CommandPalette.astro";
+
+type Props = {
+  title?: string;
+  description?: string;
+  active?: NavKey;
+};
+
+const { title, description = SITE.description, active } = Astro.props;
+const fullTitle = title ? `${title} · ${SITE.name}` : SITE.name;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={asset("favicon.svg")} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Backdrop />
+    <SiteHeader active={active} />
+    <main id="main" class="main">
+      <slot />
+    </main>
+    <SiteFooter />
+    <CommandPalette />
+  </body>
+</html>
+
+<style>
+  .skip {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 100;
+    padding: 8px 14px;
+    font-family: var(--cy-font-mono);
+    color: var(--cy-on-accent);
+    background: var(--cy-yellow);
+    transform: translateY(-200%);
+  }
+
+  .skip:focus {
+    transform: none;
+  }
+
+  .main {
+    position: relative;
+    z-index: 1;
+    min-height: calc(100vh - var(--cy-header-h) - 160px);
+  }
+</style>

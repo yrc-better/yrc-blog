@@ -1,0 +1,118 @@
+---
+type Props = {
+  text: string;
+  as?: "h1" | "h2" | "p" | "span";
+  size?: "hero" | "page" | "inline";
+  id?: string;
+};
+
+const { text, as: Tag = "span", size = "inline", id } = Astro.props;
+---
+
+<Tag class:list={["glitch", `glitch--${size}`]} data-text={text} id={id}>{text}</Tag>
+
+<style>
+  .glitch {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    font-family: var(--cy-font-display);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    color: var(--cy-text);
+    text-transform: uppercase;
+    text-shadow:
+      2px 0 var(--cy-magenta),
+      -2px 0 var(--cy-cyan);
+  }
+
+  .glitch--hero {
+    font-size: clamp(2.6rem, 8.4vw, 6.4rem);
+  }
+
+  .glitch--page {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+  }
+
+  .glitch--inline {
+    font-size: inherit;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    content: attr(data-text) / "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .glitch::before {
+    color: var(--cy-cyan);
+    transform: translate(-3px, 0);
+    clip-path: inset(0 0 100% 0);
+    animation: glitch-slice-a 3.6s infinite steps(1);
+  }
+
+  .glitch::after {
+    color: var(--cy-magenta);
+    transform: translate(3px, 0);
+    clip-path: inset(100% 0 0 0);
+    animation: glitch-slice-b 3.6s infinite steps(1);
+  }
+
+  .glitch--inline::before,
+  .glitch--inline::after {
+    animation-play-state: paused;
+  }
+
+  :global(a:hover) > .glitch--inline::before,
+  :global(a:hover) > .glitch--inline::after,
+  :global(a:focus-visible) > .glitch--inline::before,
+  :global(a:focus-visible) > .glitch--inline::after {
+    animation-play-state: running;
+    animation-duration: 0.9s;
+  }
+
+  @keyframes glitch-slice-a {
+    0%,
+    86%,
+    100% {
+      clip-path: inset(0 0 100% 0);
+    }
+    87% {
+      clip-path: inset(12% 0 62% 0);
+      transform: translate(-6px, 1px);
+    }
+    90% {
+      clip-path: inset(48% 0 30% 0);
+      transform: translate(5px, -1px);
+    }
+    93% {
+      clip-path: inset(78% 0 4% 0);
+      transform: translate(-4px, 0);
+    }
+  }
+
+  @keyframes glitch-slice-b {
+    0%,
+    88%,
+    100% {
+      clip-path: inset(100% 0 0 0);
+    }
+    89% {
+      clip-path: inset(66% 0 14% 0);
+      transform: translate(6px, 0);
+    }
+    92% {
+      clip-path: inset(6% 0 80% 0);
+      transform: translate(-5px, 1px);
+    }
+    95% {
+      clip-path: inset(38% 0 44% 0);
+      transform: translate(4px, -1px);
+    }
+  }
+</style>

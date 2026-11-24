@@ -1,0 +1,105 @@
+---
+export type Tone = "cyan" | "yellow" | "magenta" | "violet";
+
+type Props = {
+  tone?: Tone;
+  label?: string;
+  as?: "div" | "article" | "section" | "aside" | "nav";
+  interactive?: boolean;
+  class?: string;
+};
+
+const { tone = "cyan", label, as: Tag = "div", interactive = false, class: extra = "" } = Astro.props;
+---
+
+<Tag class:list={["hud", `hud--${tone}`, { "hud--interactive": interactive }, extra]}>
+  <span class="hud__corner hud__corner--tl" aria-hidden="true"></span>
+  <span class="hud__corner hud__corner--br" aria-hidden="true"></span>
+  {label && <span class="hud__label" aria-hidden="true">{label}</span>}
+  <slot />
+</Tag>
+
+<style>
+  .hud {
+    --hud-accent: var(--cy-cyan);
+    --hud-soft: var(--cy-cyan-soft);
+    position: relative;
+    background:
+      linear-gradient(135deg, var(--hud-soft), var(--cy-transparent) 38%),
+      var(--cy-panel);
+    border: 1px solid var(--cy-line);
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--cy-cut)) 0,
+      100% var(--cy-cut),
+      100% 100%,
+      var(--cy-cut) 100%,
+      0 calc(100% - var(--cy-cut))
+    );
+    backdrop-filter: blur(6px);
+    transition:
+      border-color var(--cy-fast) var(--cy-ease),
+      background var(--cy-fast) var(--cy-ease),
+      transform var(--cy-fast) var(--cy-ease);
+  }
+
+  .hud--yellow {
+    --hud-accent: var(--cy-yellow);
+    --hud-soft: var(--cy-yellow-soft);
+  }
+
+  .hud--magenta {
+    --hud-accent: var(--cy-magenta);
+    --hud-soft: var(--cy-magenta-soft);
+  }
+
+  .hud--violet {
+    --hud-accent: var(--cy-violet);
+    --hud-soft: var(--cy-violet-soft);
+  }
+
+  .hud__corner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    border-color: var(--hud-accent);
+    border-style: solid;
+    opacity: 0.85;
+  }
+
+  .hud__corner--tl {
+    top: 0;
+    left: 0;
+    border-width: 2px 0 0 2px;
+  }
+
+  .hud__corner--br {
+    right: var(--cy-cut);
+    bottom: 0;
+    border-width: 0 0 2px 0;
+    width: 36px;
+  }
+
+  .hud__label {
+    position: absolute;
+    top: 0;
+    right: calc(var(--cy-cut) + 10px);
+    padding: 1px 8px;
+    font-family: var(--cy-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cy-on-accent);
+    background: var(--hud-accent);
+  }
+
+  .hud--interactive:hover,
+  .hud--interactive:focus-within {
+    border-color: var(--hud-accent);
+    background:
+      linear-gradient(135deg, var(--hud-soft), var(--cy-transparent) 60%),
+      var(--cy-panel-hover);
+    transform: translateY(-2px);
+  }
+</style>

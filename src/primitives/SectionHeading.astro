@@ -1,0 +1,58 @@
+---
+import GlitchText from "./GlitchText.astro";
+
+type Props = {
+  index: string;
+  title: string;
+  caption: string;
+  count?: number;
+  unit?: string;
+};
+
+const { index, title, caption, count, unit = "entries" } = Astro.props;
+---
+
+<header class="sh">
+  <p class="sh__path" aria-hidden="true">
+    <span class="sh__index">// {index}</span>
+    <span class="sh__rule"></span>
+    {count !== undefined && <span class="sh__count">{String(count).padStart(2, "0")} {unit}</span>}
+  </p>
+  <GlitchText as="h1" size="page" text={title} />
+  <p class="sh__caption">{caption}</p>
+</header>
+
+<style>
+  .sh {
+    padding: 56px 0 28px;
+  }
+
+  .sh__path {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 14px;
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cy-yellow);
+  }
+
+  .sh__rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--cy-yellow), var(--cy-transparent));
+  }
+
+  .sh__count {
+    color: var(--cy-text-dim);
+  }
+
+  .sh__caption {
+    margin: 14px 0 0;
+    max-width: 60ch;
+    color: var(--cy-text-dim);
+    font-size: 16px;
+  }
+</style>

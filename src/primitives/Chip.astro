@@ -1,0 +1,52 @@
+---
+import type { Tone } from "./HudPanel.astro";
+
+type Props = {
+  tone?: Tone | "dim";
+  solid?: boolean;
+};
+
+const { tone = "dim", solid = false } = Astro.props;
+---
+
+<span class:list={["chip", `chip--${tone}`, { "chip--solid": solid }]}><slot /></span>
+
+<style>
+  .chip {
+    --chip-accent: var(--cy-text-dim);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 9px;
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    line-height: 1.6;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--chip-accent);
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+
+  .chip--cyan {
+    --chip-accent: var(--cy-cyan);
+  }
+
+  .chip--yellow {
+    --chip-accent: var(--cy-yellow);
+  }
+
+  .chip--magenta {
+    --chip-accent: var(--cy-magenta);
+  }
+
+  .chip--violet {
+    --chip-accent: var(--cy-violet);
+  }
+
+  .chip--solid {
+    color: var(--cy-on-accent);
+    background: var(--chip-accent);
+    border-color: var(--chip-accent);
+  }
+</style>

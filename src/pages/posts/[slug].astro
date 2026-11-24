@@ -1,0 +1,29 @@
+---
+import ArticlePage from "../../features/reading/ArticlePage.astro";
+import { listPosts, neighbours, postHref, type Post } from "../../catalog/entries.ts";
+
+export async function getStaticPaths() {
+  const posts = await listPosts();
+  return posts.map((post) => {
+    const { newer, older } = neighbours(posts, post);
+    return {
+      params: { slug: post.id },
+      props: {
+        post,
+        newer: newer && { title: newer.data.title, href: postHref(newer) },
+        older: older && { title: older.data.title, href: postHref(older) },
+      },
+    };
+  });
+}
+
+type Props = {
+  post: Post;
+  newer: { title: string; href: string } | undefined;
+  older: { title: string; href: string } | undefined;
+};
+
+const { post, newer, older } = Astro.props;
+---
+
+<ArticlePage entry={post} section={{ key: "posts", label: "Blog" }} newer={newer} older={older} />

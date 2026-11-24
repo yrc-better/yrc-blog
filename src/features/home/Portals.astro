@@ -1,0 +1,158 @@
+---
+import Icon, { type IconName } from "../../primitives/Icon.astro";
+import type { Tone } from "../../primitives/HudPanel.astro";
+import HudPanel from "../../primitives/HudPanel.astro";
+import { route } from "../../shared/url.ts";
+import type { EntryKind } from "../../catalog/entries.ts";
+
+type Props = {
+  counts: Record<EntryKind, number>;
+};
+
+const { counts } = Astro.props;
+
+const PORTALS: { label: string; desc: string; href: string; icon: IconName; tone: Tone; count: number; verb: string }[] = [
+  { label: "Papers", desc: "Research papers and reading notes.", href: route("papers"), icon: "paper", tone: "yellow", count: counts.paper, verb: "Enter" },
+  { label: "Projects", desc: "Things I build and tinker with.", href: route("projects"), icon: "cube", tone: "magenta", count: counts.project, verb: "Enter" },
+  { label: "Blog", desc: "Study notes and life essays.", href: route("posts"), icon: "book", tone: "cyan", count: counts.post, verb: "Browse" },
+];
+---
+
+<section class="portals cy-container" aria-labelledby="portals-title">
+  <h2 id="portals-title" class="cy-visually-hidden">Sections</h2>
+  <ul class="portals__grid">
+    {
+      PORTALS.map((portal, i) => (
+        <li>
+          <HudPanel as="article" tone={portal.tone} interactive class="portal">
+            <div class={`portal__body portal__body--${portal.tone}`}>
+              <div class="portal__top">
+                <span class="portal__index">0{i + 1}</span>
+                <span class="portal__icon">
+                  <Icon name={portal.icon} size={26} />
+                </span>
+              </div>
+              <h3 class="portal__label">
+                <a href={portal.href}>{portal.label}</a>
+              </h3>
+              <p class="portal__desc">{portal.desc}</p>
+              <p class="portal__foot" aria-hidden="true">
+                <span>{String(portal.count).padStart(2, "0")} nodes</span>
+                <span class="portal__go">{portal.verb} →</span>
+              </p>
+            </div>
+          </HudPanel>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .portals {
+    margin-top: -48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .portals__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .portal__body {
+    --portal-accent: var(--cy-cyan);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px 24px 20px;
+  }
+
+  .portal__body--yellow {
+    --portal-accent: var(--cy-yellow);
+  }
+
+  .portal__body--magenta {
+    --portal-accent: var(--cy-magenta);
+  }
+
+  .portal__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .portal__index {
+    font-family: var(--cy-font-display);
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--cy-transparent);
+    -webkit-text-stroke: 1px var(--portal-accent);
+    opacity: 0.7;
+  }
+
+  .portal__icon {
+    color: var(--portal-accent);
+  }
+
+  .portal__label {
+    margin: 22px 0 6px;
+    font-family: var(--cy-font-display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .portal__label a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  .portal__desc {
+    flex: 1;
+    margin: 0;
+    color: var(--cy-text-dim);
+    font-size: 14px;
+  }
+
+  .portal__foot {
+    display: flex;
+    justify-content: space-between;
+    margin: 22px 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed var(--cy-line-strong);
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cy-text-faint);
+  }
+
+  .portal__go {
+    color: var(--portal-accent);
+    transition: transform var(--cy-fast) var(--cy-ease);
+  }
+
+  :global(.portal:hover) .portal__go {
+    transform: translateX(4px);
+  }
+
+  :global(.portal:hover) .portal__index {
+    opacity: 1;
+    text-shadow: 0 0 18px var(--portal-accent);
+  }
+
+  @media (max-width: 860px) {
+    .portals__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

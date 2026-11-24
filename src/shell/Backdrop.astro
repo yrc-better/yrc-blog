@@ -1,0 +1,74 @@
+<div class="bd" aria-hidden="true">
+  <div class="bd__glow bd__glow--a"></div>
+  <div class="bd__glow bd__glow--b"></div>
+  <div class="bd__grid"></div>
+  <div class="bd__scan"></div>
+  <div class="bd__vignette"></div>
+</div>
+
+<style>
+  .bd {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .bd__glow {
+    position: absolute;
+    width: 60vmax;
+    height: 60vmax;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.32;
+  }
+
+  .bd__glow--a {
+    top: -30vmax;
+    left: -20vmax;
+    background: radial-gradient(circle, var(--cy-magenta), var(--cy-transparent) 65%);
+    animation: drift 26s var(--cy-ease) infinite alternate;
+  }
+
+  .bd__glow--b {
+    right: -25vmax;
+    bottom: -35vmax;
+    background: radial-gradient(circle, var(--cy-cyan), var(--cy-transparent) 65%);
+    animation: drift 32s var(--cy-ease) infinite alternate-reverse;
+  }
+
+  .bd__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--cy-grid) 1px, var(--cy-transparent) 1px),
+      linear-gradient(90deg, var(--cy-grid) 1px, var(--cy-transparent) 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 30%, var(--cy-void) 20%, var(--cy-transparent) 75%);
+  }
+
+  .bd__scan {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--cy-scanline) 0,
+      var(--cy-scanline) 1px,
+      var(--cy-transparent) 1px,
+      var(--cy-transparent) 3px
+    );
+  }
+
+  .bd__vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, var(--cy-transparent) 55%, var(--cy-void) 100%);
+  }
+
+  @keyframes drift {
+    to {
+      transform: translate(8vmax, 6vmax) scale(1.1);
+    }
+  }
+</style>
