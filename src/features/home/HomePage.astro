@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../shell/BaseLayout.astro";
+import { countEntries, listFeed } from "../../catalog/entries.ts";
+import HomeHero from "./HomeHero.astro";
+import Portals from "./Portals.astro";
+import StatStrip from "./StatStrip.astro";
+import TransmissionFeed from "./TransmissionFeed.astro";
+
+const FEED_LIMIT = 6;
+const [counts, feed] = await Promise.all([countEntries(), listFeed()]);
+---
+
+<BaseLayout>
+  <HomeHero counts={counts} />
+  <Portals counts={counts} />
+  <StatStrip counts={counts} />
+  <TransmissionFeed items={feed.slice(0, FEED_LIMIT)} />
+</BaseLayout>

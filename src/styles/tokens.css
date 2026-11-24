@@ -1,0 +1,59 @@
+:root {
+  color-scheme: dark;
+
+  --cy-void: #030409;
+  --cy-bg: #06070d;
+  --cy-bg-raised: #0b0e18;
+  --cy-panel: rgba(10, 13, 24, 0.78);
+  --cy-panel-solid: #0c1020;
+  --cy-panel-hover: rgba(18, 22, 40, 0.9);
+
+  --cy-yellow: #fcee0a;
+  --cy-yellow-soft: rgba(252, 238, 10, 0.14);
+  --cy-cyan: #00f0ff;
+  --cy-cyan-soft: rgba(0, 240, 255, 0.12);
+  --cy-cyan-line: rgba(0, 240, 255, 0.22);
+  --cy-magenta: #ff2a6d;
+  --cy-magenta-soft: rgba(255, 42, 109, 0.14);
+  --cy-violet: #8b5cff;
+  --cy-violet-soft: rgba(139, 92, 255, 0.16);
+  --cy-green: #3dff8b;
+
+  --cy-text: #e8f0ff;
+  --cy-text-dim: #93a0bd;
+  --cy-text-faint: #56607a;
+  --cy-on-accent: #05060a;
+
+  --cy-line: rgba(147, 160, 189, 0.16);
+  --cy-line-strong: rgba(147, 160, 189, 0.32);
+  --cy-scanline: rgba(255, 255, 255, 0.025);
+  --cy-grid: rgba(0, 240, 255, 0.06);
+  --cy-grid-floor: rgba(255, 42, 109, 0.35);
+  --cy-shadow: rgba(0, 0, 0, 0.6);
+  --cy-transparent: rgba(0, 0, 0, 0);
+
+  --cy-glow-cyan: 0 0 6px rgba(0, 240, 255, 0.55), 0 0 22px rgba(0, 240, 255, 0.25);
+  --cy-glow-yellow: 0 0 6px rgba(252, 238, 10, 0.55), 0 0 24px rgba(252, 238, 10, 0.22);
+  --cy-glow-magenta: 0 0 6px rgba(255, 42, 109, 0.6), 0 0 24px rgba(255, 42, 109, 0.28);
+  --cy-text-glow-cyan: 0 0 8px rgba(0, 240, 255, 0.65);
+  --cy-text-glow-magenta: 0 0 10px rgba(255, 42, 109, 0.7);
+
+  --cy-kind-paper: var(--cy-yellow);
+  --cy-kind-post: var(--cy-cyan);
+  --cy-kind-project: var(--cy-magenta);
+
+  --cy-font-display: "Orbitron", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --cy-font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, "PingFang SC", monospace;
+  --cy-font-body: "Inter", system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+
+  --cy-cut: 14px;
+  --cy-cut-sm: 8px;
+  --cy-radius: 2px;
+  --cy-page: 1200px;
+  --cy-prose: 760px;
+  --cy-header-h: 60px;
+
+  --cy-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cy-fast: 140ms;
+  --cy-slow: 420ms;
+}

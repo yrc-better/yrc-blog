@@ -1,0 +1,290 @@
+.prose {
+  min-width: 0;
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--cy-text);
+  counter-reset: h2;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose p {
+  margin: 1.1em 0;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  position: relative;
+  line-height: 1.35;
+  scroll-margin-top: calc(var(--cy-header-h) + 24px);
+}
+
+.prose h2 {
+  margin: 2.4em 0 0.9em;
+  padding: 0 0 10px 0;
+  font-size: 1.55em;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--cy-line);
+  counter-increment: h2;
+  counter-reset: h3;
+}
+
+.prose h2::before {
+  content: counter(h2, decimal-leading-zero);
+  content: counter(h2, decimal-leading-zero) / "";
+  display: inline-block;
+  margin-right: 14px;
+  padding: 0 6px;
+  font-family: var(--cy-font-mono);
+  font-size: 0.55em;
+  vertical-align: 0.35em;
+  color: var(--cy-on-accent);
+  background: var(--cy-yellow);
+}
+
+.prose h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 96px;
+  height: 1px;
+  background: var(--cy-yellow);
+  box-shadow: var(--cy-glow-yellow);
+}
+
+.prose h3 {
+  margin: 2em 0 0.7em;
+  font-size: 1.22em;
+  font-weight: 700;
+  color: var(--cy-cyan);
+}
+
+.prose h3::before {
+  content: "▸ ";
+  content: "▸ " / "";
+  color: var(--cy-magenta);
+}
+
+.prose h4 {
+  margin: 1.6em 0 0.6em;
+  font-size: 1.05em;
+  color: var(--cy-text-dim);
+}
+
+.prose strong {
+  color: var(--cy-yellow);
+  font-weight: 700;
+}
+
+.prose em {
+  color: var(--cy-text);
+}
+
+.prose a {
+  color: var(--cy-cyan);
+  border-bottom: 1px solid var(--cy-cyan-line);
+  transition:
+    border-color var(--cy-fast) var(--cy-ease),
+    text-shadow var(--cy-fast) var(--cy-ease);
+}
+
+.prose a:hover {
+  border-bottom-color: var(--cy-cyan);
+  text-shadow: var(--cy-text-glow-cyan);
+}
+
+.prose h2 a,
+.prose h3 a {
+  border: 0;
+  color: inherit;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose li {
+  margin: 0.35em 0;
+}
+
+.prose ul > li::marker {
+  color: var(--cy-magenta);
+  content: "◆  ";
+  font-size: 0.7em;
+}
+
+.prose ol > li::marker {
+  color: var(--cy-cyan);
+  font-family: var(--cy-font-mono);
+}
+
+.prose hr {
+  height: 1px;
+  margin: 3em 0;
+  border: 0;
+  background: linear-gradient(90deg, var(--cy-transparent), var(--cy-magenta), var(--cy-cyan), var(--cy-transparent));
+}
+
+.prose blockquote {
+  margin: 1.6em 0;
+  padding: 14px 20px;
+  color: var(--cy-text-dim);
+  background: var(--cy-panel);
+  border-left: 2px solid var(--cy-cyan);
+}
+
+.prose blockquote p {
+  margin: 0.4em 0;
+}
+
+.prose p:has(> img) {
+  margin: 2em 0;
+}
+
+.prose p:has(> img:only-child) {
+  text-align: center;
+}
+
+.prose p > img {
+  display: inline-block;
+  padding: 6px;
+  background: var(--cy-panel-solid);
+  border: 1px solid var(--cy-line-strong);
+  box-shadow: 0 0 0 1px var(--cy-void), 0 18px 40px var(--cy-shadow);
+}
+
+.prose p:has(> img + img) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.prose p:has(> img + img) > img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.prose p:has(> img) + blockquote {
+  margin-top: -1.2em;
+  padding: 0;
+  font-family: var(--cy-font-mono);
+  font-size: 13px;
+  text-align: center;
+  color: var(--cy-text-faint);
+  background: none;
+  border: 0;
+}
+
+.prose p:not(:has(> img + img)) > img:only-child {
+  max-height: 560px;
+  object-fit: contain;
+}
+
+.prose :not(pre) > code {
+  padding: 0.12em 0.42em;
+  font-family: var(--cy-font-mono);
+  font-size: 0.86em;
+  color: var(--cy-magenta);
+  background: var(--cy-magenta-soft);
+  border: 1px solid var(--cy-line);
+}
+
+.prose pre.astro-code {
+  position: relative;
+  margin: 1.8em 0;
+  padding: 34px 20px 18px;
+  overflow-x: auto;
+  font-family: var(--cy-font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--shiki-dark);
+  background: var(--cy-void);
+  border: 1px solid var(--cy-line-strong);
+  border-left: 2px solid var(--cy-magenta);
+}
+
+.prose pre.astro-code span {
+  color: var(--shiki-dark);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+}
+
+.prose pre.astro-code::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 10px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cy-on-accent);
+  background: var(--cy-magenta);
+}
+
+.prose pre.astro-code[data-language="text"]::before,
+.prose pre.astro-code[data-language="plaintext"]::before {
+  content: "output";
+  background: var(--cy-text-faint);
+}
+
+.prose table {
+  display: block;
+  width: 100%;
+  margin: 1.8em 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.prose th,
+.prose td {
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--cy-line);
+}
+
+.prose th {
+  font-family: var(--cy-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--cy-on-accent);
+  background: var(--cy-cyan);
+}
+
+.prose tbody tr:nth-child(even) {
+  background: var(--cy-panel);
+}
+
+.prose tbody tr:hover {
+  background: var(--cy-cyan-soft);
+}
+
+.prose td:first-child {
+  white-space: nowrap;
+  color: var(--cy-yellow);
+}
+
+.prose .katex {
+  font-size: 1.05em;
+}
+
+.prose .katex-display {
+  margin: 1.6em 0;
+  padding: 18px 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: var(--cy-panel);
+  border: 1px solid var(--cy-line);
+  border-left: 2px solid var(--cy-violet);
+}

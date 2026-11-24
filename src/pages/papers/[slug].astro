@@ -1,0 +1,29 @@
+---
+import ArticlePage from "../../features/reading/ArticlePage.astro";
+import { listPapers, neighbours, paperHref, type Paper } from "../../catalog/entries.ts";
+
+export async function getStaticPaths() {
+  const papers = await listPapers();
+  return papers.map((paper) => {
+    const { newer, older } = neighbours(papers, paper);
+    return {
+      params: { slug: paper.id },
+      props: {
+        paper,
+        newer: newer && { title: newer.data.title, href: paperHref(newer) },
+        older: older && { title: older.data.title, href: paperHref(older) },
+      },
+    };
+  });
+}
+
+type Props = {
+  paper: Paper;
+  newer: { title: string; href: string } | undefined;
+  older: { title: string; href: string } | undefined;
+};
+
+const { paper, newer, older } = Astro.props;
+---
+
+<ArticlePage entry={paper} section={{ key: "papers", label: "Papers" }} newer={newer} older={older} />

@@ -1,0 +1,170 @@
+---
+import BaseLayout from "../../shell/BaseLayout.astro";
+import SectionHeading from "../../primitives/SectionHeading.astro";
+import HudPanel from "../../primitives/HudPanel.astro";
+import Chip from "../../primitives/Chip.astro";
+import NeonButton from "../../primitives/NeonButton.astro";
+import { isExternal } from "../../shared/url.ts";
+import { listProjects, projectHref, renderEntry } from "../../catalog/entries.ts";
+
+const STATUS = {
+  live: "Live",
+  building: "Building",
+  archived: "Archived",
+} as const;
+
+const projects = await Promise.all(
+  (await listProjects()).map(async (project) => ({ project, ...(await renderEntry(project)) })),
+);
+---
+
+<BaseLayout title="Projects" description="Things synn builds and tinkers with." active="projects">
+  <div class="cy-container">
+    <SectionHeading
+      index="02 / projects"
+      title="Projects"
+      caption="Things I build and tinker with: code, tools, and experiments."
+      count={projects.length}
+    />
+
+    <ul class="projects">
+      {
+        projects.map(({ project, Content }) => (
+          <li>
+            <HudPanel as="article" tone="magenta" label={project.data.kind}>
+              <div class="project">
+                <div class="project__head">
+                  <span class={`project__status project__status--${project.data.status}`}>
+                    <span class="project__led" aria-hidden="true" />
+                    {STATUS[project.data.status]}
+                  </span>
+                  <h2 class="project__title">{project.data.title}</h2>
+                </div>
+                <p class="project__desc">{project.data.description}</p>
+                <div class="project__more">
+                  <Content />
+                </div>
+                <div class="project__foot">
+                  <span class="project__stack">
+                    {project.data.stack.map((item) => (
+                      <Chip tone="magenta">{item}</Chip>
+                    ))}
+                  </span>
+                  <NeonButton
+                    href={projectHref(project)}
+                    tone="magenta"
+                    external={isExternal(project.data.href)}
+                    label={`${project.data.cta}：${project.data.title}`}
+                  >
+                    {project.data.cta}
+                  </NeonButton>
+                </div>
+              </div>
+            </HudPanel>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .projects {
+    display: grid;
+    gap: 22px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project {
+    padding: 32px 30px 26px;
+  }
+
+  .project__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .project__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 10px;
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cy-green);
+    border: 1px solid currentColor;
+  }
+
+  .project__status--building {
+    color: var(--cy-yellow);
+  }
+
+  .project__status--archived {
+    color: var(--cy-text-faint);
+  }
+
+  .project__led {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 10px currentColor;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  .project__title {
+    margin: 0;
+    font-size: clamp(24px, 3.2vw, 32px);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  .project__desc {
+    max-width: 70ch;
+    margin: 16px 0 0;
+    font-size: 16px;
+    color: var(--cy-text);
+  }
+
+  .project__more {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--cy-text-dim);
+  }
+
+  .project__more :global(p) {
+    margin: 0;
+  }
+
+  .project__more :global(a) {
+    color: var(--cy-magenta);
+    border-bottom: 1px dashed currentColor;
+  }
+
+  .project__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .project__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.35;
+    }
+  }
+</style>

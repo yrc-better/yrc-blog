@@ -1,0 +1,90 @@
+---
+import type { MarkdownHeading } from "astro";
+
+type Props = {
+  headings: MarkdownHeading[];
+};
+
+const { headings } = Astro.props;
+---
+
+<nav class="toc" aria-label="On this page" data-toc>
+  <p class="toc__title" aria-hidden="true">// On this page</p>
+  <ol>
+    {
+      headings.map((heading) => (
+        <li class={`toc__item toc__item--${heading.depth}`}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  .toc {
+    position: sticky;
+    top: calc(var(--cy-header-h) + 32px);
+    align-self: start;
+    max-height: calc(100vh - var(--cy-header-h) - 64px);
+    overflow-y: auto;
+    padding-left: 16px;
+    border-left: 1px solid var(--cy-line);
+  }
+
+  .toc__title {
+    margin: 0 0 12px;
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cy-magenta);
+  }
+
+  .toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .toc__item a {
+    position: relative;
+    display: block;
+    padding: 5px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--cy-text-faint);
+    transition: color var(--cy-fast) var(--cy-ease);
+  }
+
+  .toc__item--3 a {
+    padding-left: 14px;
+    font-size: 12px;
+  }
+
+  .toc__item a:hover {
+    color: var(--cy-text);
+  }
+
+  .toc__item a[aria-current="true"] {
+    color: var(--cy-cyan);
+    text-shadow: var(--cy-text-glow-cyan);
+  }
+
+  .toc__item a[aria-current="true"]::before {
+    content: "";
+    position: absolute;
+    left: -17px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--cy-cyan);
+    box-shadow: var(--cy-glow-cyan);
+  }
+
+  @media (max-width: 1080px) {
+    .toc {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,305 @@
+---
+import Icon from "../primitives/Icon.astro";
+import { SITE } from "../shared/site.ts";
+import { route } from "../shared/url.ts";
+
+export type NavKey = "papers" | "projects" | "posts";
+
+type Props = {
+  active?: NavKey | undefined;
+};
+
+const { active } = Astro.props;
+
+const NAV: { key: NavKey; label: string; href: string }[] = [
+  { key: "papers", label: "Papers", href: route("papers") },
+  { key: "projects", label: "Projects", href: route("projects") },
+  { key: "posts", label: "Blog", href: route("posts") },
+];
+---
+
+<header class="hdr">
+  <div class="hdr__inner cy-container">
+    <a class="hdr__brand" href={route()} aria-label={`${SITE.name} — home`}>
+      <span class="hdr__logo" aria-hidden="true">S</span>
+      <span class="hdr__name" aria-hidden="true">SYNN<span class="hdr__slash">//</span>SPACE</span>
+    </a>
+
+    <nav class="hdr__nav" aria-label="Primary">
+      <ul>
+        {
+          NAV.map((item, i) => (
+            <li>
+              <a href={item.href} aria-current={active === item.key ? "page" : undefined}>
+                <span class="hdr__num" aria-hidden="true">
+                  0{i + 1}
+                </span>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="hdr__tools">
+      <span class="hdr__clock" aria-hidden="true">
+        <span class="hdr__led"></span>
+        <span data-clock>NET ONLINE</span>
+      </span>
+      <button
+        class="hdr__cmd"
+        type="button"
+        data-command-open
+        aria-label="Search"
+        aria-keyshortcuts="Meta+K Control+K /"
+        aria-haspopup="dialog"
+        aria-controls="command-palette"
+      >
+        <Icon name="terminal" size={15} />
+        <span class="hdr__cmd-text">Search</span>
+        <kbd>⌘K</kbd>
+      </button>
+      <a class="hdr__icon" href={SITE.author.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <Icon name="github" size={18} />
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  import "./header.client.ts";
+</script>
+
+<style>
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--cy-header-h);
+    background: linear-gradient(to bottom, var(--cy-void), var(--cy-panel));
+    border-bottom: 1px solid var(--cy-line);
+    backdrop-filter: blur(10px);
+  }
+
+  .hdr::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--cy-transparent), var(--cy-cyan) 30%, var(--cy-magenta) 70%, var(--cy-transparent));
+    opacity: 0.7;
+  }
+
+  .hdr__inner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    height: 100%;
+  }
+
+  .hdr__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hdr__logo {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    font-family: var(--cy-font-display);
+    font-weight: 900;
+    color: var(--cy-on-accent);
+    background: var(--cy-yellow);
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+    transition: box-shadow var(--cy-fast) var(--cy-ease);
+  }
+
+  .hdr__brand:hover .hdr__logo {
+    box-shadow: var(--cy-glow-yellow);
+  }
+
+  .hdr__name {
+    font-family: var(--cy-font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.16em;
+  }
+
+  .hdr__slash {
+    color: var(--cy-magenta);
+    margin: 0 2px;
+  }
+
+  .hdr__nav ul {
+    display: flex;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hdr__nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 6px 12px;
+    font-family: var(--cy-font-mono);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cy-text-dim);
+    transition: color var(--cy-fast) var(--cy-ease);
+  }
+
+  .hdr__num {
+    font-size: 10px;
+    color: var(--cy-magenta);
+  }
+
+  .hdr__nav a::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 0;
+    height: 2px;
+    background: var(--cy-cyan);
+    box-shadow: var(--cy-glow-cyan);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--cy-fast) var(--cy-ease);
+  }
+
+  .hdr__nav a:hover,
+  .hdr__nav a[aria-current="page"] {
+    color: var(--cy-text);
+  }
+
+  .hdr__nav a:hover::after,
+  .hdr__nav a[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+
+  .hdr__tools {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: auto;
+  }
+
+  .hdr__clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--cy-text-faint);
+  }
+
+  .hdr__led {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cy-green);
+    box-shadow: 0 0 8px var(--cy-green);
+    animation: blink 2.4s steps(1) infinite;
+  }
+
+  .hdr__cmd {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px 6px 10px;
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--cy-text-dim);
+    background: var(--cy-panel);
+    border: 1px solid var(--cy-line-strong);
+    cursor: pointer;
+    transition:
+      color var(--cy-fast) var(--cy-ease),
+      border-color var(--cy-fast) var(--cy-ease);
+  }
+
+  .hdr__cmd:hover {
+    color: var(--cy-cyan);
+    border-color: var(--cy-cyan);
+  }
+
+  .hdr__cmd kbd {
+    padding: 0 5px;
+    font-family: inherit;
+    font-size: 10px;
+    color: var(--cy-yellow);
+    border: 1px solid var(--cy-line-strong);
+  }
+
+  .hdr__icon {
+    display: inline-flex;
+    color: var(--cy-text-dim);
+    transition: color var(--cy-fast) var(--cy-ease);
+  }
+
+  .hdr__icon:hover {
+    color: var(--cy-yellow);
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .hdr__clock,
+    .hdr__cmd-text,
+    .hdr__cmd kbd {
+      display: none;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .hdr__inner {
+      gap: 10px;
+    }
+
+    .hdr__name,
+    .hdr__num {
+      display: none;
+    }
+
+    .hdr__nav a {
+      padding: 6px 7px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .hdr__tools {
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .hdr__icon {
+      display: none;
+    }
+
+    .hdr__nav ul {
+      gap: 0;
+    }
+
+    .hdr__nav a {
+      padding: 6px 5px;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
+  }
+</style>

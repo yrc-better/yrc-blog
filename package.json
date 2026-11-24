@@ -1,5 +1,42 @@
 {
+  "name": "yrc-blog",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint --max-warnings 0 .",
+    "typecheck": "astro check && tsc --noEmit",
+    "repo-check": "node tools/repo-check/main.ts",
+    "test:rules": "node --test \"tools/**/*.test.ts\"",
+    "check": "npm run repo-check && npm run lint && npm run test:rules && npm run typecheck",
+    "site": "node tools/site/main.ts",
+    "verify": "node tools/site/main.ts verify",
+    "fuzz": "node tools/site/main.ts fuzz",
+    "ci": "npm run check && npm run build && npm run verify && npm run fuzz"
+  },
   "dependencies": {
-    "@pyscript/core": "^0.6.70"
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/markdown-remark": "^7.3.10",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/orbitron": "^5.3.0",
+    "astro": "^7.4.1",
+    "katex": "0.16.47",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "astro-eslint-parser": "^3.2.0",
+    "eslint": "^10.15.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "jiti": "^2.7.0",
+    "playwright": "^1.65.1",
+    "typescript-eslint": "^8.74.0"
   }
 }

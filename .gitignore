@@ -1,14 +1,7 @@
-# Python / MkDocs
-.venv/
-site/
-.cache/
-__pycache__/
-*.pyc
-.ipynb_checkpoints/
-
-# 本地工具配置(机器相关)
-.claude/launch.json
-
-# OS 杂项
+node_modules/
+dist/
+.astro/
+proof/
 .DS_Store
 Thumbs.db
+.claude/launch.json

@@ -1,0 +1,82 @@
+---
+export type PagerLink = { title: string; href: string };
+
+type Props = {
+  newer?: PagerLink | undefined;
+  older?: PagerLink | undefined;
+};
+
+const { newer, older } = Astro.props;
+---
+
+{
+  (newer || older) && (
+    <nav class="pager" aria-label="More entries">
+      {newer ? (
+        <a class="pager__link" href={newer.href} rel="prev">
+          <span class="pager__dir">← Newer</span>
+          <span class="pager__title">{newer.title}</span>
+        </a>
+      ) : (
+        <span />
+      )}
+      {older && (
+        <a class="pager__link pager__link--older" href={older.href} rel="next">
+          <span class="pager__dir">Older →</span>
+          <span class="pager__title">{older.title}</span>
+        </a>
+      )}
+    </nav>
+  )
+}
+
+<style>
+  .pager {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: var(--cy-prose);
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--cy-line);
+  }
+
+  .pager__link {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 18px;
+    background: var(--cy-panel);
+    border: 1px solid var(--cy-line);
+    transition:
+      border-color var(--cy-fast) var(--cy-ease),
+      box-shadow var(--cy-fast) var(--cy-ease);
+  }
+
+  .pager__link:hover {
+    border-color: var(--cy-cyan);
+    box-shadow: var(--cy-glow-cyan);
+  }
+
+  .pager__link--older {
+    text-align: right;
+  }
+
+  .pager__dir {
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cy-cyan);
+  }
+
+  .pager__title {
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .pager {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

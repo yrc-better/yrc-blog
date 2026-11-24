@@ -1,0 +1,239 @@
+---
+import BaseLayout from "../../shell/BaseLayout.astro";
+import Chip from "../../primitives/Chip.astro";
+import Icon from "../../primitives/Icon.astro";
+import { formatDate, isoDate } from "../../shared/dates.ts";
+import { route } from "../../shared/url.ts";
+import { renderEntry, type Article } from "../../catalog/entries.ts";
+import { readingMinutes } from "../../catalog/reading-time.ts";
+import Toc from "./Toc.astro";
+import Pager, { type PagerLink } from "./Pager.astro";
+import "./prose.css";
+
+type Props = {
+  entry: Article;
+  section: { key: "papers" | "posts"; label: string };
+  newer?: PagerLink | undefined;
+  older?: PagerLink | undefined;
+};
+
+const { entry, section, newer, older } = Astro.props;
+const { Content, headings } = await renderEntry(entry);
+const data = entry.data;
+const subtitle = "subtitle" in data ? data.subtitle : undefined;
+const sources = [
+  ...("paper" in data && data.paper ? [{ label: "Paper", href: data.paper }] : []),
+  ...("code" in data && data.code ? [{ label: "Code", href: data.code }] : []),
+];
+const affiliations = "affiliations" in data ? data.affiliations : undefined;
+const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+
+<BaseLayout title={data.title} description={data.description} active={section.key}>
+  <div class="progress" aria-hidden="true"><span data-progress></span></div>
+
+  <div class="article cy-container">
+    <header class="head">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href={route()}>~</a>
+        <span aria-hidden="true">/</span>
+        <a href={route(section.key)}>{section.key}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{entry.id}</span>
+      </nav>
+
+      <h1 class="head__title">{data.title}</h1>
+      {subtitle && <p class="head__subtitle">{subtitle}</p>}
+
+      <div class="head__meta">
+        <span class="head__stamp">
+          <Icon name="clock" size={14} />
+          <time datetime={isoDate(data.date)}>{formatDate(data.date)}</time>
+          <span>· {readingMinutes(entry.body)} min read</span>
+        </span>
+        {data.tags.map((tag) => <Chip tone="cyan">{tag}</Chip>)}
+      </div>
+
+      {
+        (affiliations || sources.length > 0) && (
+          <dl class="head__facts">
+            {affiliations && (
+              <div>
+                <dt>Affiliations</dt>
+                <dd>{affiliations}</dd>
+              </div>
+            )}
+            {sources.map((source) => (
+              <div>
+                <dt>{source.label}</dt>
+                <dd>
+                  <a href={source.href} target="_blank" rel="noopener noreferrer">
+                    {source.href.replace(/^https:\/\//, "")} ↗
+                  </a>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+    </header>
+
+    <div class:list={["layout", { "layout--toc": tocHeadings.length > 1 }]}>
+      <article class="prose" data-prose>
+        <Content />
+      </article>
+      {tocHeadings.length > 1 && <Toc headings={tocHeadings} />}
+    </div>
+
+    <Pager newer={newer} older={older} />
+  </div>
+</BaseLayout>
+
+<script>
+  import "./reading.client.ts";
+</script>
+
+<style>
+  .progress {
+    position: fixed;
+    top: var(--cy-header-h);
+    left: 0;
+    right: 0;
+    z-index: 49;
+    height: 2px;
+    pointer-events: none;
+  }
+
+  .progress span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--cy-magenta), var(--cy-yellow), var(--cy-cyan));
+    box-shadow: var(--cy-glow-cyan);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .head {
+    max-width: 920px;
+    padding: 48px 0 36px;
+    border-bottom: 1px solid var(--cy-line);
+  }
+
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--cy-text-faint);
+  }
+
+  .crumbs a {
+    color: var(--cy-cyan);
+  }
+
+  .crumbs a:hover {
+    text-shadow: var(--cy-text-glow-cyan);
+  }
+
+  .crumbs [aria-current] {
+    overflow: hidden;
+    max-width: 48ch;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .head__title {
+    margin: 22px 0 0;
+    font-size: clamp(30px, 5vw, 50px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-shadow:
+      2px 0 var(--cy-magenta-soft),
+      -2px 0 var(--cy-cyan-soft);
+  }
+
+  .head__subtitle {
+    margin: 10px 0 0;
+    font-family: var(--cy-font-mono);
+    font-size: 15px;
+    color: var(--cy-yellow);
+  }
+
+  .head__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .head__stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 6px;
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+    color: var(--cy-text-dim);
+  }
+
+  .head__facts {
+    display: grid;
+    gap: 6px;
+    margin: 22px 0 0;
+    padding: 14px 18px;
+    font-size: 14px;
+    background: var(--cy-panel);
+    border-left: 2px solid var(--cy-yellow);
+  }
+
+  .head__facts div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+  }
+
+  .head__facts dt {
+    min-width: 96px;
+    font-family: var(--cy-font-mono);
+    font-size: 11px;
+    line-height: 2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cy-text-faint);
+  }
+
+  .head__facts dd {
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .head__facts a {
+    color: var(--cy-cyan);
+  }
+
+  .head__facts a:hover {
+    text-shadow: var(--cy-text-glow-cyan);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, var(--cy-prose));
+    gap: 56px;
+    padding-top: 36px;
+  }
+
+  .layout--toc {
+    grid-template-columns: minmax(0, var(--cy-prose)) 240px;
+  }
+
+  @media (max-width: 1080px) {
+    .layout--toc {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

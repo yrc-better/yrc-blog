@@ -1,0 +1,178 @@
+---
+import { Image } from "astro:assets";
+import HudPanel from "../../primitives/HudPanel.astro";
+import Icon from "../../primitives/Icon.astro";
+import { SITE } from "../../shared/site.ts";
+import avatar from "./avatar.jpg";
+---
+
+<HudPanel as="aside" tone="yellow" label="ID // 2025" class="id">
+  <div class="id__body" aria-label="Profile">
+    <div class="id__photo">
+      <Image src={avatar} alt={`${SITE.author.name}'s avatar`} width={300} height={398} loading="eager" />
+      <span class="id__scan" aria-hidden="true"></span>
+      <span class="id__frame" aria-hidden="true"></span>
+    </div>
+
+    <div class="id__info">
+      <h2 class="id__name">{SITE.author.name}</h2>
+      <dl class="id__fields">
+        {
+          SITE.author.profile.map((field) => (
+            <div>
+              <dt>{field.label}</dt>
+              <dd>{field.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="id__bio">{SITE.author.bio}</p>
+      <div class="id__links">
+        <a href={`mailto:${SITE.author.email}`}><Icon name="mail" size={15} /> Email</a>
+        <a href={SITE.author.github} target="_blank" rel="noopener noreferrer"><Icon name="github" size={15} /> GitHub</a>
+      </div>
+      <span class="id__barcode" aria-hidden="true"></span>
+    </div>
+  </div>
+</HudPanel>
+
+<style>
+  .id__body {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    padding: 28px 24px 22px;
+  }
+
+  .id__photo {
+    position: relative;
+    align-self: start;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border: 1px solid var(--cy-yellow);
+  }
+
+  .id__photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.15) contrast(1.05);
+  }
+
+  .id__scan {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--cy-transparent) 40%, var(--cy-yellow-soft) 50%, var(--cy-transparent) 60%);
+    background-size: 100% 260%;
+    animation: scan 3.6s linear infinite;
+    mix-blend-mode: screen;
+  }
+
+  .id__frame {
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed var(--cy-yellow);
+    opacity: 0.4;
+  }
+
+  .id__name {
+    margin: 0;
+    font-family: var(--cy-font-display);
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cy-yellow);
+  }
+
+  .id__fields {
+    margin: 10px 0 0;
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+  }
+
+  .id__fields div {
+    display: flex;
+    gap: 10px;
+  }
+
+  .id__fields dt {
+    min-width: 56px;
+    color: var(--cy-text-faint);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .id__fields dd {
+    margin: 0;
+    color: var(--cy-text);
+  }
+
+  .id__bio {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--cy-text-dim);
+  }
+
+  .id__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .id__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    font-family: var(--cy-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--cy-text);
+    border: 1px solid var(--cy-line-strong);
+    transition:
+      color var(--cy-fast) var(--cy-ease),
+      border-color var(--cy-fast) var(--cy-ease);
+  }
+
+  .id__links a:hover {
+    color: var(--cy-yellow);
+    border-color: var(--cy-yellow);
+  }
+
+  .id__barcode {
+    display: block;
+    height: 22px;
+    margin-top: 16px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--cy-text-faint) 0 2px,
+      var(--cy-transparent) 2px 4px,
+      var(--cy-text-faint) 4px 5px,
+      var(--cy-transparent) 5px 9px
+    );
+    opacity: 0.6;
+  }
+
+  @keyframes scan {
+    from {
+      background-position: 0 100%;
+    }
+    to {
+      background-position: 0 -160%;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .id__body {
+      grid-template-columns: 1fr;
+    }
+
+    .id__photo {
+      width: 140px;
+    }
+  }
+</style>
